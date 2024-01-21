@@ -1,0 +1,39 @@
+---
+const {
+  tagList,
+  textSize = 'sm',
+  postSlug,
+} = Astro.props as {
+  tagList: string[]
+  textSize: 'sm' | 'base' | 'lg'
+  postSlug: string
+}
+---
+
+<ul class="tag-list">
+  {
+    tagList.map((tag, index) => (
+      <a
+        class:list={[
+          'tag',
+          textSize === 'sm' && 'text-sm',
+          textSize === 'base' && 'text-base',
+          textSize === 'lg' && 'text-lg',
+        ]}
+        href={`/tags/${tag}`}
+        title={tag}
+        transition:name={`tag${index + 1}:${postSlug}`}
+      >
+        {tag}
+      </a>
+    ))
+  }
+</ul>
+<style>
+  .tag-list {
+    @apply list-none py-2 flex flex-wrap gap-2;
+  }
+  .tag {
+    @apply inline-block text-sm px-4 py-1 rounded-full text-theme-primary bg-theme-dark-primary dark:bg-theme-primary dark:text-theme-dark-primary hover:bg-theme-primary hover:text-theme-dark-primary dark:hover:bg-theme-dark-primary dark:hover:text-theme-primary;
+  }
+</style>

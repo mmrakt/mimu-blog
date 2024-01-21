@@ -1,0 +1,26 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "module": "ES2022",
+    "lib": ["es2020"],
+    "target": "es2019",
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "checkJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "$components": ["./src/components"],
+      "$/*": ["src/*"]
+      // "@/*": ["src/*"]
+    },
+    "types": ["astro/env"],
+    "strictNullChecks": true
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,118 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Icon from 'astro-icon';
+import { SITE, USE_POST_IMG_OVERLAY, USE_AUTHOR_CARD, USE_SUBSCRIPTION, USE_VIEW_STATS } from '$/config'
+import MainLayout from '$/components/MainLayout.astro'
+import BaseHead from '$/components/BaseHead.astro'
+import Prose from '$/components/Prose.astro'
+import PostStats from '$/components/PostStats.svelte'
+import EditUrl from '$/components/EditLink.astro'
+import { ViewTransitions } from 'astro:transitions';
+import TagList from '$/components/TagList.astro';
+import { formatPostDate } from '$/utils';
+
+
+interface Props {
+    meta?: {
+        id: string,
+        slug: string,
+        collection: string
+    },
+    content: CollectionEntry<'blog'>['data'],
+    stats?: {
+        views: number
+    }
+    enableTransition: boolean
+}
+const { content, meta, enableTransition } = Astro.props
+
+const AUTHOR_NAME = content.author ? content.author : SITE?.author ? SITE?.author : "Author"
+const AUTHOR_TWITTER = content.authorTwitter ? content.authorTwitter : SITE?.authorTwitter ? SITE?.authorTwitter : ""
+const AUTHOR_AVATAR = content.authorImage ? content.authorImage : SITE?.authorImage ? SITE?.authorImage : ""
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        <BaseHead {...content} title={ content.title ? `${ SITE.title } | ${content.title}` : SITE.title }/>
+        {enableTransition && <ViewTransitions />}
+    </head>
+    <MainLayout>
+        <img src="/assets/astro-icon.svg" alt="" width="100" height="100" class='mx-auto' transition:name={`image:${meta?.slug}`}>
+        <div class="post__header">
+            <h1 class="post__title" transition:name={`title:${meta?.slug}`}>{ content.title }</h1>
+            <h5 class="post__desc" transition:name={`date:${meta?.slug}`}>
+                <span class="post__date">
+                    {formatPostDate(content.date)}
+                </span>
+            </h5>
+              <div class="flex justify-center sm:block" transition:name={`tagList:${meta?.slug}`}>
+                <TagList tagList={['astro', 'nextjs']} textSize="base" postSlug={meta?.slug} />
+            </div>
+        </div>
+        <Prose>
+            <slot />
+        </Prose>
+        <div class="post__footer">
+            { USE_AUTHOR_CARD &&
+                <br/>
+                <div class="author-card">
+                    { AUTHOR_AVATAR ? <img class="author-card__img avatar avatar--lg" src={AUTHOR_AVATAR} alt={`${ AUTHOR_NAME }'s avatar`} /> : ''}
+                    <div class="author-card__meta">
+                        {
+                            AUTHOR_TWITTER ?
+                                <a class="author-card__author" href={`https://twitter.com/${AUTHOR_TWITTER}`} title={`${AUTHOR_NAME}'s twitter`} target="_blank" rel="external">{ AUTHOR_NAME }</a>
+                                :
+                                <span class="author-card__author">{ AUTHOR_NAME }</span>
+                        }
+                        <p class="author-card__bio">{ SITE.authorBio }</p>
+                        <br/>
+                        {
+                            USE_SUBSCRIPTION ?
+                            <form action="" class="subscription-form">
+                                <label for="email"></label>
+                                <input type="email" name="email" class="flex-grow border-0 text-theme-accent-gray-dark" required="true">
+                                <button type="submit">Subscribe</button>
+                            </form> :
+                            <a class="author-card__follow-btn button" target="_blank" href={`https://twitter.com/intent/follow?screen_name=${AUTHOR_TWITTER}`}><Icon class="w-5 h-5 inline-block" pack="mdi" name="twitter" /> Follow on Twitter</a>
+                        }
+                    </div>
+                </div>
+                <br/>
+            }
+            {
+                meta?.collection && meta?.id && 
+                    <EditUrl label=" Suggest changes on GitHub" editUrl={`${SITE.githubUrl}/tree/main/src/content/${meta?.collection}/${meta?.id}`}/>
+            }
+        </div>
+    </MainLayout>
+</html>
+<style>
+    .post__header {
+        @apply py-4 mb-1 text-center md:text-left
+    }
+    .post__title {
+        @apply text-5xl font-extrabold text-theme-primary dark:text-theme-dark-primary
+    }
+    .post__desc {
+        @apply text-gray-500 dark:text-gray-100 flex justify-center text-left md:flex-none md:justify-start
+    }
+
+    .post__tags {
+        @apply inline-flex gap-2
+    }
+    .post__tag {
+        @apply text-gray-400 hover:text-theme-primary dark:hover:text-theme-dark-primary
+    }
+    .subscription-form {
+        @apply w-4/6 mt-2 flex flex-row rounded-lg overflow-hidden shadow-lg
+    }
+    .subscription-form input {
+        @apply flex-grow border-0 text-theme-accent-gray-dark
+    }
+    .subscription-form button, .button {
+        @apply px-4 py-2 uppercase font-bold text-white bg-gradient-to-tr from-theme-primary to-theme-dark-secondary dark:from-theme-dark-secondary dark:to-theme-primary
+    }
+    .author-card__follow-btn {
+        @apply rounded-md shadow-md shadow-theme-dark-secondary dark:shadow-theme-primary hover:shadow-theme-secondary hover:dark:shadow-theme-secondary hover:shadow-lg transition-all
+    }
+</style>

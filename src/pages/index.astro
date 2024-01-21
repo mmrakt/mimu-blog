@@ -1,0 +1,44 @@
+---
+export const prerender = true
+
+import { getCollection, getEntryBySlug } from 'astro:content'
+import DefaultPageLayout from '$/layouts/default.astro'
+import PostPreviewList from '$/components/PostPreviewList.astro'
+import Prose from '$/components/Prose.astro'
+
+const title = "mimu's blog"
+const description = "mimu's personal tech blog"
+
+let posts = await getCollection('blog')
+posts = posts
+  .slice(0, 10)
+  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
+---
+
+<DefaultPageLayout
+  content={{ title, description }}
+  showPageHeader={false}
+  enableTransition={true}
+>
+  <PostPreviewList posts={posts.slice(0, 10)} heading="recent posts" />
+  <div class="page__actions">
+    <a class="action__go-to-blog ink-h" href="/blog" title="All Posts">
+      All Posts &rarr;
+    </a>
+  </div>
+</DefaultPageLayout>
+
+<style>
+  .author-card {
+    @apply h-48 w-48 md:h-56 bg-theme-primary dark:bg-theme-dark-primary rounded-full md:rounded-md shadow-lg;
+  }
+  .author-card img {
+    @apply rounded-full h-48 w-48 md:h-56;
+  }
+  .page__actions {
+    @apply flex justify-center md:justify-end py-6;
+  }
+  .action__go-to-blog {
+    @apply py-4 hover:underline;
+  }
+</style>
