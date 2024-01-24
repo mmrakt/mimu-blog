@@ -8,15 +8,16 @@ export type Props = {
   title: string
   description: string
   permalink?: string
-  image: string
 }
 
-const { title = SITE.title, description, permalink, image } = Astro.props
+const {
+  title = SITE.title,
+  description = SITE.description,
+  permalink = SITE.url,
+} = Astro.props
+const imageUrl = `${SITE.url}/img/mimu-memo-ogp.png`
 ---
 
-<!-- Use Google Fonts, if you don't wanna prefer a self-hosted version --><!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -47,14 +48,14 @@ const { title = SITE.title, description, permalink, image } = Astro.props
 <meta property="og:title" content={title} />
 {permalink && <meta property="og:url" content={permalink} />}
 {description && <meta property="og:description" content={description} />}
-{image && <meta property="og:image" content={image} />}
+<meta property="og:image" content={imageUrl} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content={title} />
 {permalink && <meta property="twitter:url" content={permalink} />}
 {description && <meta property="twitter:description" content={description} />}
-{image && <meta property="twitter:image" content={image} />}
+<meta property="twitter:image" content={imageUrl} />
 
 <script is:inline>
   const theme = (() => {

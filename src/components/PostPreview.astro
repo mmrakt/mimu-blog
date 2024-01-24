@@ -3,17 +3,15 @@ import type { CollectionEntry } from 'astro:content'
 import { formatPostDate, getMonthName } from '$/utils'
 import dayjs from 'dayjs'
 import TagList from '$/components/TagList.astro'
+import type { Frontmatter } from '$/types'
 
 dayjs().format()
 
 interface Props {
-  post: CollectionEntry<'blog'>
+  post: Frontmatter
   asCard?: boolean
 }
-const {
-  post: { data: post, slug },
-  asCard = false,
-} = Astro.props
+const { post, asCard = false } = Astro.props
 ---
 
 <div class={`post-preview ${asCard && 'post-preview--card'}`}>
@@ -24,20 +22,20 @@ const {
       alt=""
       width="84"
       height="84"
-      transition:name={`image:${slug}`}
+      transition:name={`image:${post.link}`}
     />
   </div>
   <div class="flex-1">
     <h4
       class="post-preview__title dark:text-theme-dark-primary"
-      transition:name={`title:${slug}`}
+      transition:name={`title:${post.link}`}
     >
-      <a href={`/blog/${slug}`} title={post.title}>{post.title}</a>
+      <a href={`/blog/${post.link}`} title={post.title}>{post.title}</a>
     </h4>
-    <p class="post-preview__date" transition:name={`date:${slug}`}>
-      {formatPostDate(post.date)}
+    <p class="post-preview__date" transition:name={`date:${post.link}`}>
+      {formatPostDate(post.pubDate)}
     </p>
-    <TagList tagList={['astro', 'nextjs']} postSlug={slug} />
+    <TagList tagList={['astro', 'nextjs']} postSlug={post.link} />
   </div>
 </div>
 <style>

@@ -20,27 +20,14 @@ export const NAV_ITEMS: NavItems = {
 }
 
 export const SITE = {
-  // Your site's detail?
-  name: "mimu's blog",
-  title: "mimu's blog",
+  name: 'mimu memo',
+  title: 'mimu memo',
   description: 'personal tech blog',
-  url: 'https://mimu-blog.dev',
+  url: 'https://mimu-memo.dev',
   githubUrl: 'https://github.com/mmrkat/mimu-blog',
   listDrafts: true,
   image:
     'https://raw.githubusercontent.com/one-aalam/astro-ink/main/public/astro-banner.png',
-  // YT video channel Id (used in media.astro)
-  ytChannelId: '',
-  // Optional, user/author settings (example)
-  // Author: name
-  author: '', // Example: Fred K. Schott
-  // Author: Twitter handler
-  authorTwitter: '', // Example: FredKSchott
-  // Author: Image external source
-  authorImage: '', // Example: https://pbs.twimg.com/profile_images/1272979356529221632/sxvncugt_400x400.jpg, https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png
-  // Author: Bio
-  authorBio:
-    'Crisp, minimal, personal blog theme for Astro. Crisp, minimal, personal blog theme for Astro. Crisp, minimal, personal blog theme for Astro',
 }
 
 // Ink - Theme configuration
@@ -53,3 +40,21 @@ export const USE_SUBSCRIPTION =
   false /* works only when USE_AUTHOR_CARD is true */
 
 export const USE_VIEW_STATS = true
+
+export const QIITA_URL_PREFIX = 'https://qiita.com'
+export const NOTE_URL_PREFIX = 'https://note.com'
+export const ZENN_URL_PREFIX = 'https://zenn.dev'
+export const MEDIA_TYPE_LIST = ['owned', 'qiita', 'zenn', 'note'] as const
+export const MEDIA_TYPE_LIST_FOR_DISPLAY = [
+  'mimu-memo',
+  'Qiita',
+  'Zenn',
+  'note',
+] as const
+
+export const SNS_ID = 'mmrakt'
+export const TWITTER_ID = 'mmrakt0716'
+export const ZENN_FEED_URL = `https://zenn.dev/${SNS_ID}/feed?all=1`
+export const NOTE_FEED_URL = `https://note.com/${SNS_ID}/rss`
+export const QIITA_API_ENDPOINT =
+  'https://qiita.com/api/v2/authenticated_user/items'

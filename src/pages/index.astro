@@ -5,14 +5,37 @@ import { getCollection, getEntryBySlug } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
 import PostPreviewList from '$/components/PostPreviewList.astro'
 import Prose from '$/components/Prose.astro'
+import type { Frontmatter } from '$/types'
+import {
+  makeQiitaPosts,
+  makeZennPosts,
+  makeNotePosts,
+  extractSlugFromMd,
+  sortPostsByPubDate,
+} from '$/utils'
 
 const title = "mimu's blog"
 const description = "mimu's personal tech blog"
 
-let posts = await getCollection('blog')
-posts = posts
-  .slice(0, 10)
-  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
+const ownedMd = await Astro.glob<Frontmatter>('../content/owned/*.mdx'),
+  qiitaPosts = await makeQiitaPosts(),
+  zennPosts = await makeZennPosts(),
+  notePosts = await makeNotePosts()
+const ownedPosts: Frontmatter[] = ownedMd.map((post) => {
+  return {
+    pubDate: post.frontmatter.pubDate,
+    title: post.frontmatter.title,
+    link: extractSlugFromMd(post),
+    media: 'owned',
+  }
+})
+
+const posts = sortPostsByPubDate([
+  ...ownedPosts,
+  ...qiitaPosts,
+  ...zennPosts,
+  ...notePosts,
+]).slice(0, 10)
 ---
 
 <DefaultPageLayout
@@ -20,7 +43,7 @@ posts = posts
   showPageHeader={false}
   enableTransition={true}
 >
-  <PostPreviewList posts={posts.slice(0, 10)} heading="recent posts" />
+  <PostPreviewList posts={posts} heading="recent posts" />
   <div class="page__actions">
     <a class="action__go-to-blog ink-h" href="/blog" title="All Posts">
       All Posts &rarr;
