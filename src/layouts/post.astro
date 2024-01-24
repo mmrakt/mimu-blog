@@ -1,41 +1,25 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import Icon from 'astro-icon'
-import {
-  SITE,
-  USE_POST_IMG_OVERLAY,
-  USE_AUTHOR_CARD,
-  USE_SUBSCRIPTION,
-  USE_VIEW_STATS,
-} from '$/config'
 import MainLayout from '$/components/MainLayout.astro'
 import BaseHead from '$/components/BaseHead.astro'
 import Prose from '$/components/Prose.astro'
-import PostStats from '$/components/PostStats.svelte'
-import EditUrl from '$/components/EditLink.astro'
 import { ViewTransitions } from 'astro:transitions'
 import TagList from '$/components/TagList.astro'
 import { extractExcerptFromBody, formatPostDate } from '$/utils'
-import type { Frontmatter } from '$/types'
 
 interface Props {
-  meta?: {
-    id: string
-    slug: string
-    collection: string
-  }
-  content: CollectionEntry<'owned'>
-  enableTransition: boolean
+  entry: CollectionEntry<'owned'>
+  enableTransition?: boolean
 }
-const { content, meta, enableTransition } = Astro.props
+const { entry, enableTransition = false } = Astro.props
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <BaseHead
-      title={content.data.title}
-      description={await extractExcerptFromBody(content.body)}
+      title={entry.data.title}
+      description={await extractExcerptFromBody(entry.body)}
     />
     {enableTransition && <ViewTransitions />}
   </head>
@@ -46,63 +30,35 @@ const { content, meta, enableTransition } = Astro.props
       width="100"
       height="100"
       class="mx-auto"
-      transition:name={`image:${meta?.slug}`}
+      transition:name={`image:${entry.slug}`}
     />
     <div class="post__header">
-      <h1 class="post__title" transition:name={`title:${meta?.slug}`}>
-        {content.data.title}
+      <h1 class="post__title" transition:name={`title:${entry.slug}`}>
+        {entry.data.title}
       </h1>
-      <h5 class="post__desc" transition:name={`date:${meta?.slug}`}>
+      <h5 class="post__desc" transition:name={`date:${entry.slug}`}>
         <span class="post__date">
-          {formatPostDate(content.data.pubDate)}
+          {formatPostDate(entry.data.pubDate)}
         </span>
       </h5>
       <div
         class="flex justify-center sm:block"
-        transition:name={`tagList:${meta?.slug}`}
+        transition:name={`tagList:${entry.slug}`}
       >
-        <TagList
-          tagList={['astro', 'nextjs']}
-          textSize="base"
-          postSlug={meta?.slug}
-        />
+        {
+          entry.data.tagList && (
+            <TagList
+              items={entry.data.tagList}
+              textSize="base"
+              postSlug={entry.slug}
+            />
+          )
+        }
       </div>
     </div>
     <Prose>
       <slot />
     </Prose>
-    <!-- <div class="post__footer">
-            { USE_AUTHOR_CARD &&
-                <br/>
-                <div class="author-card">
-                    { AUTHOR_AVATAR ? <img class="author-card__img avatar avatar--lg" src={AUTHOR_AVATAR} alt={`${ AUTHOR_NAME }'s avatar`} /> : ''}
-                    <div class="author-card__meta">
-                        {
-                            AUTHOR_TWITTER ?
-                                <a class="author-card__author" href={`https://twitter.com/${AUTHOR_TWITTER}`} title={`${AUTHOR_NAME}'s twitter`} target="_blank" rel="external">{ AUTHOR_NAME }</a>
-                                :
-                                <span class="author-card__author">{ AUTHOR_NAME }</span>
-                        }
-                        <p class="author-card__bio">{ SITE.authorBio }</p>
-                        <br/>
-                        {
-                            USE_SUBSCRIPTION ?
-                            <form action="" class="subscription-form">
-                                <label for="email"></label>
-                                <input type="email" name="email" class="flex-grow border-0 text-theme-accent-gray-dark" required="true">
-                                <button type="submit">Subscribe</button>
-                            </form> :
-                            <a class="author-card__follow-btn button" target="_blank" href={`https://twitter.com/intent/follow?screen_name=${AUTHOR_TWITTER}`}><Icon class="w-5 h-5 inline-block" pack="mdi" name="twitter" /> Follow on Twitter</a>
-                        }
-                    </div>
-                </div>
-                <br/>
-            }
-            {
-                meta?.collection && meta?.id && 
-                    <EditUrl label=" Suggest changes on GitHub" editUrl={`${SITE.githubUrl}/tree/main/src/content/${meta?.collection}/${meta?.id}`}/>
-            }
-        </div> -->
   </MainLayout>
 
   <style>

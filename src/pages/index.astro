@@ -1,41 +1,33 @@
 ---
 export const prerender = true
 
-import { getCollection, getEntryBySlug } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
 import PostPreviewList from '$/components/PostPreviewList.astro'
-import Prose from '$/components/Prose.astro'
-import type { Frontmatter } from '$/types'
 import {
   makeQiitaPosts,
   makeZennPosts,
   makeNotePosts,
-  extractSlugFromMd,
   sortPostsByPubDate,
+  fromCollectionToFrontmatters,
 } from '$/utils'
+import { PAGE_SIZE } from '$/config'
+import { getCollection } from 'astro:content'
 
 const title = "mimu's blog"
 const description = "mimu's personal tech blog"
 
-const ownedMd = await Astro.glob<Frontmatter>('../content/owned/*.mdx'),
+const collection = await getCollection('owned'),
   qiitaPosts = await makeQiitaPosts(),
   zennPosts = await makeZennPosts(),
   notePosts = await makeNotePosts()
-const ownedPosts: Frontmatter[] = ownedMd.map((post) => {
-  return {
-    pubDate: post.frontmatter.pubDate,
-    title: post.frontmatter.title,
-    link: extractSlugFromMd(post),
-    media: 'owned',
-  }
-})
+const ownedPosts = fromCollectionToFrontmatters(collection)
 
 const posts = sortPostsByPubDate([
   ...ownedPosts,
   ...qiitaPosts,
   ...zennPosts,
   ...notePosts,
-]).slice(0, 10)
+]).slice(0, PAGE_SIZE)
 ---
 
 <DefaultPageLayout

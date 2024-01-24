@@ -1,10 +1,12 @@
 ---
+import type { Tag } from '$/content/config'
+
 const {
-  tagList,
+  items,
   textSize = 'sm',
   postSlug,
 } = Astro.props as {
-  tagList: string[]
+  items: Tag[]
   textSize: 'sm' | 'base' | 'lg'
   postSlug: string
 }
@@ -12,7 +14,7 @@ const {
 
 <ul class="tag-list">
   {
-    tagList.map((tag, index) => (
+    items.map((item, index) => (
       <a
         class:list={[
           'tag',
@@ -20,11 +22,11 @@ const {
           textSize === 'base' && 'text-base',
           textSize === 'lg' && 'text-lg',
         ]}
-        href={`/tags/${tag}`}
-        title={tag}
-        transition:name={`tag${index + 1}:${postSlug}`}
+        href={`/tags/${item}`}
+        title={item}
+        transition:name={`item${index + 1}:${postSlug}`}
       >
-        {tag}
+        {item}
       </a>
     ))
   }

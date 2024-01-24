@@ -1,5 +1,6 @@
 import type { CollectionEntry } from 'astro:content'
 import type { MEDIA_TYPE_LIST, MEDIA_TYPE_LIST_FOR_DISPLAY } from '$/config'
+import type { Tag } from '$/content/config'
 
 export type NavItems = {
   [key: string]: NavItem
@@ -11,10 +12,11 @@ export type NavItem = {
 }
 
 export type Frontmatter = {
-  pubDate: string
+  pubDate: string | Date
   title: string
   link: string
   media: MediaType // TODO: 汎用化する
+  tagList?: Tag[]
 }
 
 export type PaginatedPost = {

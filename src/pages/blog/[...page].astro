@@ -7,20 +7,44 @@ import PostPreviewList from '$/components/PostPreviewList.astro'
 import Paginator from '$/components/Paginator.astro'
 import { PAGE_SIZE } from '$/config'
 
+import type { Page, PaginateFunction } from 'astro'
+import type { Frontmatter } from '$/types'
+import {
+  makeQiitaPosts,
+  makeZennPosts,
+  makeNotePosts,
+  sortPostsByPubDate,
+  fromCollectionToFrontmatters,
+} from '$/utils'
+
 let title = 'Blog'
 let description = 'All the articles posted so far...'
 
-export async function getStaticPaths({ paginate }) {
-  const allPosts = await getCollection('blog')
-  const sortedPosts = allPosts.sort(
-    (a, b) => new Date(b.data.date) - new Date(a.data.date)
-  )
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction
+}) {
+  const collection = await getCollection('owned'),
+    qiitaPosts = await makeQiitaPosts(),
+    zennPosts = await makeZennPosts(),
+    notePosts = await makeNotePosts()
+  const ownedPosts = fromCollectionToFrontmatters(collection)
 
-  return paginate(sortedPosts, {
+  const posts = sortPostsByPubDate([
+    ...ownedPosts,
+    ...qiitaPosts,
+    ...zennPosts,
+    ...notePosts,
+  ])
+
+  return paginate(posts, {
     pageSize: PAGE_SIZE,
   })
 }
-
+type Props = {
+  page: Page<Frontmatter>
+}
 const { page } = Astro.props
 ---
 

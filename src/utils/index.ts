@@ -16,6 +16,7 @@ import type { MarkdownInstance, MDXInstance } from 'astro'
 dayjs().format()
 
 import path from 'path'
+import type { CollectionEntry } from 'astro:content'
 const MONTHS = [
   'Jan',
   'Feb',
@@ -61,10 +62,6 @@ export const convertMediaTypeToSlug = (
   }
   return ''
 }
-
-export const extractSlugFromMd = (
-  md: MarkdownInstance<Frontmatter> | MDXInstance<Frontmatter>
-) => md.file.split('/').reverse()[0].replace('.mdx', '').replace('.md', '')
 
 export const sortPostsByPubDate = (posts: Frontmatter[]): Frontmatter[] =>
   posts.sort(
@@ -128,4 +125,18 @@ export const extractExcerptFromBody = async (body: string) => {
     return `${excerpt.slice(0, 70)}...`
   }
   return excerpt
+}
+
+export const fromCollectionToFrontmatters = (
+  collection: CollectionEntry<'owned'>[]
+): Frontmatter[] => {
+  return collection.map((entry) => {
+    return {
+      pubDate: entry.data.pubDate,
+      title: entry.data.title,
+      tagList: entry.data.tagList,
+      link: entry.slug,
+      media: 'owned',
+    }
+  })
 }

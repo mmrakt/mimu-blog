@@ -30,12 +30,18 @@ const { post, asCard = false } = Astro.props
       class="post-preview__title dark:text-theme-dark-primary"
       transition:name={`title:${post.link}`}
     >
-      <a href={`/blog/${post.link}`} title={post.title}>{post.title}</a>
+      <a
+        href={post.media === 'owned' ? `/blog/${post.link}` : post.link}
+        title={post.title}
+        target={post.media === 'owned' ? '' : '_blank'}
+      >
+        {post.title}
+      </a>
     </h4>
     <p class="post-preview__date" transition:name={`date:${post.link}`}>
       {formatPostDate(post.pubDate)}
     </p>
-    <TagList tagList={['astro', 'nextjs']} postSlug={post.link} />
+    {post.tagList && <TagList items={post.tagList} postSlug={post.link} />}
   </div>
 </div>
 <style>
