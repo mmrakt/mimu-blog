@@ -1,0 +1,21 @@
+---
+import type { Tag } from '$/content/config'
+import type { MediaType } from '$/types'
+
+type Props = {
+  tag?: Tag
+  media?: MediaType
+  link: string
+}
+const { tag = '', media = '', link } = Astro.props as Props
+const imageName = tag ? tag : media ? media : 'unknown'
+---
+
+<img
+  src={`/images/${imageName}.svg`}
+  alt={imageName}
+  width="100"
+  height="100"
+  transition:name={`image:${link}`}
+  class="mx-auto"
+/>

@@ -9,15 +9,14 @@ import type {
 import { getCollection } from 'astro:content'
 import { PAGE_SIZE } from '$/config'
 import DefaultPageLayout from '$/layouts/default.astro'
-import PostPreviewList from '$/components/PostPreviewList.astro'
-import Paginator from '$/components/Paginator.astro'
+import PostPreviewList from '$/components/elements/PostPreviewList.astro'
+import Paginator from '$/components/elements/Paginator.astro'
 import type { Frontmatter } from '$/types'
 import type { Tag } from '$/content/config'
 
 let title = 'Posts By Tags'
 let description = 'All the articles posted so far...'
 
-console.log('hgoehge')
 export async function getStaticPaths({
   paginate,
 }: {

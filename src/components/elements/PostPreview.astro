@@ -1,0 +1,79 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { formatPostDate, getMonthName } from '$/utils'
+import dayjs from 'dayjs'
+import TagList from '$/components/elements/TagList.astro'
+import type { Frontmatter } from '$/types'
+import PostIcon from '$/components/elements/postIcon.astro'
+
+dayjs().format()
+
+interface Props {
+  post: Frontmatter
+  asCard?: boolean
+}
+const { post, asCard = false } = Astro.props
+---
+
+<div class={`post-preview ${asCard && 'post-preview--card'}`}>
+  <div class="post-preview__date-box">
+    {
+      post.tagList && post.tagList[0] !== 'other' && (
+        <PostIcon tag={post.tagList[0]} media={post.media} link={post.link} />
+      )
+    }
+  </div>
+  <div class="flex-1">
+    <h4
+      class="post-preview__title dark:text-theme-dark-primary"
+      transition:name={`title:${post.link}`}
+    >
+      <a
+        href={post.media === 'owned' ? `/blog/${post.link}` : post.link}
+        title={post.title}
+        target={post.media === 'owned' ? '' : '_blank'}
+      >
+        {post.title}
+      </a>
+    </h4>
+    <p class="post-preview__date" transition:name={`date:${post.link}`}>
+      {formatPostDate(post.pubDate)}
+    </p>
+    {post.tagList && <TagList items={post.tagList} postSlug={post.link} />}
+  </div>
+</div>
+<style>
+  .post-preview {
+    @apply flex gap-6;
+  }
+  .post-preview--card {
+    @apply flex flex-col-reverse gap-4 sm:w-72 md:w-60 lg:w-64;
+  }
+  .post-preview__date-box {
+    @apply sm:w-20 md:w-32 flex justify-center items-center;
+  }
+  .post-preview--card .post-preview__date-box {
+    @apply w-full;
+  }
+  .post-preview__date {
+    @apply text-sm;
+  }
+  .post-preview--card .post-preview__date__day {
+    @apply text-4xl;
+  }
+  .post-preview__date__month-n-year {
+    @apply text-gray-400;
+  }
+  .post-preview__title {
+    @apply text-2xl font-semibold text-theme-primary dark:text-theme-dark-primary /* this doesn't works here */ hover:underline mb-2;
+  }
+  .post-preview__desc {
+    @apply text-lg leading-6 line-clamp-2 dark:text-white hyphens-auto;
+  }
+  .post-preview__tag-list {
+    @apply list-none py-2 flex flex-wrap gap-2;
+  }
+  .post-preview__tag {
+    @apply inline-block text-sm px-4 py-1 rounded-full text-theme-primary bg-theme-dark-primary dark:bg-theme-primary dark:text-theme-dark-primary hover:bg-theme-primary hover:text-theme-dark-primary dark:hover:bg-theme-dark-primary dark:hover:text-theme-primary;
+  }
+</style>

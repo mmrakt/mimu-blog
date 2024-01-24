@@ -5,9 +5,12 @@ const tagList = [
   'astro',
   'react',
   'typescript',
+  'javascript',
   'nextjs',
   'vite',
   'css',
+  'tailwindcss',
+  'gatsby',
 ] as const
 export type Tag = (typeof tagList)[number]
 

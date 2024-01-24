@@ -1,11 +1,12 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import MainLayout from '$/components/MainLayout.astro'
-import BaseHead from '$/components/BaseHead.astro'
-import Prose from '$/components/Prose.astro'
+import MainLayout from '$/components/layouts/MainLayout.astro'
+import BaseHead from '$/components/layouts/BaseHead.astro'
+import Prose from '$/components/elements/Prose.astro'
 import { ViewTransitions } from 'astro:transitions'
-import TagList from '$/components/TagList.astro'
+import TagList from '$/components/elements/TagList.astro'
 import { extractExcerptFromBody, formatPostDate } from '$/utils'
+import PostIcon from '$/components/elements/postIcon.astro'
 
 interface Props {
   entry: CollectionEntry<'owned'>
@@ -24,14 +25,11 @@ const { entry, enableTransition = false } = Astro.props
     {enableTransition && <ViewTransitions />}
   </head>
   <MainLayout>
-    <img
-      src="/assets/astro-icon.svg"
-      alt=""
-      width="100"
-      height="100"
-      class="mx-auto"
-      transition:name={`image:${entry.slug}`}
-    />
+    {
+      entry.data.tagList && entry.data.tagList[0] !== 'other' && (
+        <PostIcon tag={entry.data.tagList[0]} link={entry.slug} />
+      )
+    }
     <div class="post__header">
       <h1 class="post__title" transition:name={`title:${entry.slug}`}>
         {entry.data.title}

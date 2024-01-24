@@ -3,8 +3,8 @@ export const prerender = true
 
 import { getCollection } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
-import PostPreviewList from '$/components/PostPreviewList.astro'
-import Paginator from '$/components/Paginator.astro'
+import PostPreviewList from '$/components/elements/PostPreviewList.astro'
+import Paginator from '$/components/elements/Paginator.astro'
 import { PAGE_SIZE } from '$/config'
 
 import type { Page, PaginateFunction } from 'astro'

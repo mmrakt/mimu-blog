@@ -4,11 +4,13 @@ export const prerender = true
 import { getCollection } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
 import type { Tag } from '$/content/config'
+import TagList from '$/components/elements/TagList.astro'
 
 let title = 'All Tags'
 let description = 'All the tags used so far...'
 
 const collection = await getCollection('owned')
+console.log(collection[0].data.tagList)
 const tagList: Tag[] = [
   ...new Set(
     [].concat.apply(
@@ -20,28 +22,5 @@ const tagList: Tag[] = [
 ---
 
 <DefaultPageLayout content={{ title, description }}>
-  <ul class="tag-list">
-    {
-      tagList.map((tag) => (
-        <li>
-          <a
-            class="tag"
-            href={`/tags/${tag}`}
-            title={`View posts tagged under "${tag}"`}
-          >
-            {tag}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <TagList items={tagList} textSize="lg" />
 </DefaultPageLayout>
-
-<style>
-  .tag-list {
-    @apply list-none flex gap-2 flex-wrap;
-  }
-  .tag {
-    @apply inline-block text-xl px-4 py-1 rounded-full text-theme-primary bg-theme-dark-primary dark:bg-theme-primary dark:text-theme-dark-primary hover:bg-theme-primary hover:text-theme-dark-primary dark:hover:bg-theme-dark-primary dark:hover:text-theme-primary;
-  }
-</style>
