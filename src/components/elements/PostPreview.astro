@@ -12,6 +12,19 @@ interface Props {
   asCard?: boolean
 }
 const { post, asCard = false } = Astro.props
+
+let postTitlePrefix = ''
+switch (post.media) {
+  case 'note':
+    postTitlePrefix = '（note記事）'
+    break
+  case 'qiita':
+    postTitlePrefix = '（Qiita記事）'
+    break
+  case 'zenn':
+    postTitlePrefix = '（Zenn記事）'
+    break
+}
 ---
 
 <div class={`post-preview ${asCard && 'post-preview--card'}`}>
@@ -32,6 +45,7 @@ const { post, asCard = false } = Astro.props
         title={post.title}
         target={post.media === 'owned' ? '' : '_blank'}
       >
+        <span>{postTitlePrefix}</span>
         {post.title}
       </a>
     </h4>
