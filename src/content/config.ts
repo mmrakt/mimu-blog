@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content'
 
-const tagList = [
+export const tagList = [
   'other',
   'astro',
   'react',
@@ -12,7 +12,6 @@ const tagList = [
   'tailwindcss',
   'gatsby',
 ] as const
-export type Tag = (typeof tagList)[number]
 
 const owned = defineCollection({
   schema: z.object({

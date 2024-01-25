@@ -3,27 +3,16 @@ export const prerender = true
 
 import { getCollection } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
-import type { Tag } from '$/content/config'
 import TagList from '$/components/elements/TagList.astro'
+import { calcTagCountByCollection } from '$/utils/index'
 
 let title = 'All Tags'
 let description = 'All the tags used so far...'
 
 const collection = await getCollection('owned')
-const tagMap = collection
-  .flatMap((post) => post.data.tagList.map((tag) => ({ tag, count: 1 })))
-  .reduce((acc, cur) => {
-    console.log(acc, cur)
-    const found = acc.find((el) => el.tag === cur.tag)
-    if (found) {
-      found.count += 1
-    } else {
-      acc.push(cur)
-    }
-    return acc
-  }, [])
+const tagMap = calcTagCountByCollection(collection)
 ---
 
 <DefaultPageLayout content={{ title, description }}>
-  <!-- <TagList items={tagList} textSize="lg" /> -->
+  <TagList items={tagMap} textSize="lg" visibleCount />
 </DefaultPageLayout>

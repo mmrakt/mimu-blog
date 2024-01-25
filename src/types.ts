@@ -1,6 +1,6 @@
 import type { CollectionEntry } from 'astro:content'
 import type { MEDIA_TYPE_LIST, MEDIA_TYPE_LIST_FOR_DISPLAY } from '$/config'
-import type { Tag } from '$/content/config'
+import { tagList } from '$/content/config'
 
 export type NavItems = {
   [key: string]: NavItem
@@ -55,4 +55,11 @@ export type QiitaPost = {
   team_membership?: null
   organization_url_name?: null
   slide: boolean
+}
+
+export type Tag = (typeof tagList)[number]
+
+export type TagCount = {
+  name: Tag
+  count: number
 }

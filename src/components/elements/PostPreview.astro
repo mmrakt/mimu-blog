@@ -1,6 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-import { formatPostDate, getMonthName } from '$/utils'
+import { calcTagCountByTagList, formatPostDate, getMonthName } from '$/utils'
 import dayjs from 'dayjs'
 import TagList from '$/components/elements/TagList.astro'
 import type { Frontmatter } from '$/types'
@@ -39,7 +38,14 @@ const { post, asCard = false } = Astro.props
     <p class="post-preview__date" transition:name={`date:${post.link}`}>
       {formatPostDate(post.pubDate)}
     </p>
-    {post.tagList && <TagList items={post.tagList} postSlug={post.link} />}
+    {
+      post.tagList && (
+        <TagList
+          items={calcTagCountByTagList(post.tagList)}
+          postSlug={post.link}
+        />
+      )
+    }
   </div>
 </div>
 <style>

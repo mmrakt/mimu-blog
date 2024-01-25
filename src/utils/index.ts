@@ -10,6 +10,7 @@ import type {
   MediaType,
   MediaTypeForDisplay,
   QiitaPost,
+  Tag,
 } from '$/types'
 import type { MarkdownInstance, MDXInstance } from 'astro'
 
@@ -139,4 +140,38 @@ export const fromCollectionToFrontmatters = (
       media: 'owned',
     }
   })
+}
+
+export const calcTagCountByTagList = (tagList: Tag[]) => {
+  return tagList
+    .map((tag) => ({ name: tag, count: 1 }))
+    .reduce((acc, cur) => {
+      console.log(acc, cur)
+      const found = acc.find((el) => el.name === cur.name)
+      if (found) {
+        found.count += 1
+      } else {
+        acc.push(cur)
+      }
+      return acc
+    }, [])
+}
+
+export const calcTagCountByCollection = (
+  collection: CollectionEntry<'owned'>[]
+) => {
+  return collection
+    .flatMap((post) =>
+      post.data.tagList.map((tag) => ({ name: tag, count: 1 }))
+    )
+    .reduce((acc, cur) => {
+      console.log(acc, cur)
+      const found = acc.find((el) => el.name === cur.name)
+      if (found) {
+        found.count += 1
+      } else {
+        acc.push(cur)
+      }
+      return acc
+    }, [])
 }
