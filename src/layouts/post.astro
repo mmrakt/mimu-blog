@@ -43,10 +43,7 @@ const { entry, enableTransition = false } = Astro.props
           {formatPostDate(entry.data.pubDate)}
         </span>
       </h5>
-      <div
-        class="flex justify-center sm:block"
-        transition:name={`tagList:${entry.slug}`}
-      >
+      <div class="post__tag-list" transition:name={`tagList:${entry.slug}`}>
         {
           entry.data.tagList && (
             <TagList
@@ -68,17 +65,13 @@ const { entry, enableTransition = false } = Astro.props
       @apply py-4 mb-1 text-center md:text-left;
     }
     .post__title {
-      @apply text-5xl font-extrabold text-theme-primary dark:text-theme-dark-primary;
+      @apply text-4xl text-center font-extrabold text-theme-primary dark:text-theme-dark-primary mt-5;
     }
     .post__desc {
-      @apply text-gray-500 dark:text-gray-100 flex justify-center text-left md:flex-none md:justify-start;
+      @apply text-gray-500 dark:text-gray-100 flex justify-center text-left mt-2;
     }
-
-    .post__tags {
-      @apply inline-flex gap-2;
-    }
-    .post__tag {
-      @apply text-gray-400 hover:text-theme-primary dark:hover:text-theme-dark-primary;
+    .post__tag-list {
+      @apply flex justify-center;
     }
     .subscription-form {
       @apply w-4/6 mt-2 flex flex-row rounded-lg overflow-hidden shadow-lg;

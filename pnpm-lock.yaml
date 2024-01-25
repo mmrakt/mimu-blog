@@ -11,6 +11,9 @@ dependencies:
   '@astrojs/vercel':
     specifier: ^6.0.1
     version: 6.0.1(astro@4.0.3)
+  '@fontsource-variable/inter':
+    specifier: ^5.0.16
+    version: 5.0.16
   '@libsql/client':
     specifier: ^0.4.0-pre.5
     version: 0.4.0-pre.5
@@ -794,6 +797,10 @@ packages:
     resolution: {integrity: sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@fontsource-variable/inter@5.0.16:
+    resolution: {integrity: sha512-k+BUNqksTL+AN+o+OV7ILeiE9B5M5X+/jA7LWvCwjbV9ovXTqZyKRhA/x7uYv/ml8WQ0XNLBM7cRFIx4jW0/hg==}
+    dev: false
 
   /@fontsource/fira-sans@5.0.18:
     resolution: {integrity: sha512-FAxkEg8LSYqihmZ0bBGxVyPzur5P6QwGssVcolUAKO+DrdopbxJxuUb8H8kzSoF9OkVR7ZAmaIQiWvm973PubA==}
