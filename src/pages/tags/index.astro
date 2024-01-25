@@ -10,17 +10,20 @@ let title = 'All Tags'
 let description = 'All the tags used so far...'
 
 const collection = await getCollection('owned')
-console.log(collection[0].data.tagList)
-const tagList: Tag[] = [
-  ...new Set(
-    [].concat.apply(
-      [],
-      collection.map((post) => post.data.tagList)
-    )
-  ),
-]
+const tagMap = collection
+  .flatMap((post) => post.data.tagList.map((tag) => ({ tag, count: 1 })))
+  .reduce((acc, cur) => {
+    console.log(acc, cur)
+    const found = acc.find((el) => el.tag === cur.tag)
+    if (found) {
+      found.count += 1
+    } else {
+      acc.push(cur)
+    }
+    return acc
+  }, [])
 ---
 
 <DefaultPageLayout content={{ title, description }}>
-  <TagList items={tagList} textSize="lg" />
+  <!-- <TagList items={tagList} textSize="lg" /> -->
 </DefaultPageLayout>
