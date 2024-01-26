@@ -21,7 +21,7 @@ const { posts, heading, mode = 'col' } = Astro.props
   )
 }
 <section class={`post-preview-list post-preview-list--${mode}`}>
-  <ul class="grid grid-cols-2 gap-6">
+  <ul class="grid grid-cols-1 md:grid-cols-2 md:gap-6 gap-4">
     {
       posts.map((post) => (
         <PostPreview post={post} asCard={mode === 'row' ? true : false} />

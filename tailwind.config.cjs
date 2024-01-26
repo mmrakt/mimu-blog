@@ -57,13 +57,19 @@ module.exports = {
               color: colors.dark.primary,
             },
             h1: {
-              color: colors.dark.secondary,
+              color: 'currentColor',
             },
             h2: {
-              color: colors.dark.secondary,
+              color: 'currentColor',
             },
             h3: {
-              color: colors.dark.secondary,
+              color: 'currentColor',
+            },
+            h4: {
+              color: 'currentColor',
+            },
+            h5: {
+              color: 'currentColor',
             },
           },
         },

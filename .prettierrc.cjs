@@ -5,7 +5,7 @@ module.exports = {
   singleQuote: true,
   htmlWhitespaceSensitivity: 'ignore',
   tabWidth: 2,
-  plugins: [require.resolve('prettier-plugin-astro')],
+  plugins: ['prettier-plugin-astro'],
   overrides: [
     {
       files: '*.astro',

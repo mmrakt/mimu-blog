@@ -37,7 +37,7 @@ const posts = sortPostsByPubDate([
 >
   <PostPreviewList posts={posts} heading="recent posts" />
   <div class="page__actions">
-    <a class="action__go-to-blog ink-h" href="/blog" title="All Posts">
+    <a class="action__go-to-blog" href="/blog" title="All Posts">
       All Posts &rarr;
     </a>
   </div>
@@ -54,6 +54,6 @@ const posts = sortPostsByPubDate([
     @apply flex justify-center md:justify-end py-6;
   }
   .action__go-to-blog {
-    @apply py-4 hover:underline;
+    @apply py-4 hover:underline font-menlo;
   }
 </style>

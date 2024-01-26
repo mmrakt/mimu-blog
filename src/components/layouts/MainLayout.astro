@@ -13,7 +13,12 @@ const { isPostPage = false } = Astro.props as { isPostPage: boolean }
   <br class="my-4" />
   <Header />
   <Nav />
-  <div class:list={['min-h-[580px]', isPostPage && 'max-w-2xl mx-auto']}>
+  <div
+    class:list={[
+      'min-h-[580px]',
+      isPostPage && 'max-w-2xl mx-auto mt-4 md:mt-0',
+    ]}
+  >
     <slot />
   </div>
   <br class="my-4" />
