@@ -13,18 +13,18 @@ export const NAV_ITEMS: NavItems = {
     path: '/tags',
     title: 'tags',
   },
-  about: {
-    path: '/about',
-    title: 'about',
-  },
+  // about: {
+  //   path: '/about',
+  //   title: 'about',
+  // },
 }
 
 export const SITE = {
-  name: 'mimu memo',
-  title: 'mimu memo',
+  name: 'mimu-memo',
+  title: 'mimu-memo',
   description: 'personal tech blog',
   url: 'https://mimu-memo.dev',
-  githubUrl: 'https://github.com/mmrkat/mimu-blog',
+  githubUrl: 'https://github.com/mmrakt/mimu-blog',
   listDrafts: true,
   image:
     'https://raw.githubusercontent.com/one-aalam/astro-ink/main/public/astro-banner.png',

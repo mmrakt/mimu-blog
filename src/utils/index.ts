@@ -11,6 +11,7 @@ import type {
   MediaTypeForDisplay,
   QiitaPost,
   Tag,
+  TagCount,
 } from '$/types'
 import type { MarkdownInstance, MDXInstance } from 'astro'
 
@@ -144,7 +145,7 @@ export const fromCollectionToFrontmatters = (
   })
 }
 
-export const calcTagCountByTagList = (tagList: Tag[]) => {
+export const calcTagCountByTagList = (tagList: Tag[]): TagCount[] => {
   return tagList
     .map((tag) => ({ name: tag, count: 1 }))
     .reduce((acc, cur) => {
@@ -160,7 +161,7 @@ export const calcTagCountByTagList = (tagList: Tag[]) => {
 
 export const calcTagCountByCollection = (
   collection: CollectionEntry<'owned'>[]
-) => {
+): TagCount[] => {
   return collection
     .flatMap((post) =>
       post.data.tagList.map((tag) => ({ name: tag, count: 1 }))
