@@ -21,6 +21,10 @@ module.exports = {
       colors: {
         theme: {
           ...colors,
+          wave: {
+            dark: '#32364C',
+            light: '#E7DFF3',
+          },
         },
       },
       typography: (theme) => ({

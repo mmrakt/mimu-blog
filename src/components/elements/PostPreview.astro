@@ -27,31 +27,25 @@ switch (post.media) {
 }
 ---
 
-<div class={`post-preview ${asCard && 'post-preview--card'}`}>
-  <div class="post-preview__date-box">
-    {
-      post.tagList && post.tagList[0] !== 'other' && (
-        <PostIcon tag={post.tagList[0]} media={post.media} link={post.link} />
-      )
-    }
-  </div>
-  <div class="flex-1">
-    <h4
-      class="post-preview__title dark:text-theme-dark-primary"
-      transition:name={`title:${post.link}`}
+<li class="post-preview">
+  <div class="post-preview__externalUrl"></div>
+  <h4 class="post-preview__title" transition:name={`title:${post.link}`}>
+    <a
+      href={post.media === 'owned' ? `/blog/${post.link}` : post.link}
+      title={post.title}
+      target={post.media === 'owned' ? '' : '_blank'}
     >
-      <a
-        href={post.media === 'owned' ? `/blog/${post.link}` : post.link}
-        title={post.title}
-        target={post.media === 'owned' ? '' : '_blank'}
-      >
-        <span>{postTitlePrefix}</span>
-        {post.title}
-      </a>
-    </h4>
-    <p class="post-preview__date" transition:name={`date:${post.link}`}>
-      {formatPostDate(post.pubDate)}
-    </p>
+      <span>{postTitlePrefix}</span>
+      {post.title}
+    </a>
+  </h4>
+  <div
+    class:list={[
+      'text-right mt-3',
+      post.tagList && 'flex justify-between items-center',
+    ]}
+    transition:name={`date:${post.link}`}
+  >
     {
       post.tagList && (
         <TagList
@@ -60,40 +54,18 @@ switch (post.media) {
         />
       )
     }
+    <span class="post-preview__date">{formatPostDate(post.pubDate)}</span>
   </div>
-</div>
+</li>
 <style>
   .post-preview {
-    @apply flex gap-6;
-  }
-  .post-preview--card {
-    @apply flex flex-col-reverse gap-4 sm:w-72 md:w-60 lg:w-64;
-  }
-  .post-preview__date-box {
-    @apply sm:w-20 md:w-32 flex justify-center items-center;
-  }
-  .post-preview--card .post-preview__date-box {
-    @apply w-full;
-  }
-  .post-preview__date {
-    @apply text-sm;
-  }
-  .post-preview--card .post-preview__date__day {
-    @apply text-4xl;
-  }
-  .post-preview__date__month-n-year {
-    @apply text-gray-400;
+    @apply rounded-lg bg-theme-wave-light dark:bg-theme-wave-dark  p-4 flex flex-col justify-between;
   }
   .post-preview__title {
-    @apply text-xl font-bold text-theme-primary dark:text-theme-dark-primary /* this doesn't works here */ hover:underline mb-2;
+    @apply mt-3 text-lg font-bold hover:underline;
   }
-  .post-preview__desc {
-    @apply text-lg leading-6 line-clamp-2 dark:text-white hyphens-auto;
-  }
-  .post-preview__tag-list {
-    @apply list-none py-2 flex flex-wrap gap-2;
-  }
-  .post-preview__tag {
-    @apply inline-block text-sm px-4 py-1 rounded-full text-theme-primary bg-theme-dark-primary dark:bg-theme-primary dark:text-theme-dark-primary hover:bg-theme-primary hover:text-theme-dark-primary dark:hover:bg-theme-dark-primary dark:hover:text-theme-primary;
+
+  .post-preview__date {
+    @apply text-xs text-right self-end;
   }
 </style>

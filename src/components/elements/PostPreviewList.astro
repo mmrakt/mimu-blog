@@ -20,12 +20,14 @@ const { posts, heading, mode = 'col' } = Astro.props
     ''
   )
 }
-<section class={`post-preview__list post-preview__list--${mode}`}>
-  {
-    posts.map((post) => (
-      <PostPreview post={post} asCard={mode === 'row' ? true : false} />
-    ))
-  }
+<section class={`post-preview-list post-preview-list--${mode}`}>
+  <ul class="grid grid-cols-2 gap-6">
+    {
+      posts.map((post) => (
+        <PostPreview post={post} asCard={mode === 'row' ? true : false} />
+      ))
+    }
+  </ul>
 </section>
 <style>
   .post-preview__heading {
@@ -33,14 +35,5 @@ const { posts, heading, mode = 'col' } = Astro.props
   }
   .post-preview__heading--row {
     @apply pl-0;
-  }
-  .post-preview__list {
-    @apply flex flex-col gap-12;
-  }
-  .post-preview__list--row {
-    @apply flex-row flex-wrap md:px-6 lg:px-0 gap-12 md:gap-8 sm:gap-10 lg:gap-12;
-  }
-  .post-preview__list--col {
-    @apply flex-col gap-12;
   }
 </style>

@@ -28,7 +28,7 @@ const { entry, enableTransition = false } = Astro.props
     />
     {enableTransition && <ViewTransitions />}
   </head>
-  <MainLayout>
+  <MainLayout isPostPage>
     {
       entry.data.tagList && entry.data.tagList[0] !== 'other' && (
         <PostIcon tag={entry.data.tagList[0]} link={entry.slug} />
@@ -40,21 +40,20 @@ const { entry, enableTransition = false } = Astro.props
           {entry.data.title}
         </h1>
       </div>
-      <p class="post__desc" transition:name={`date:${entry.slug}`}>
-        <span class="post__date">
-          {formatPostDate(entry.data.pubDate)}
-        </span>
-      </p>
-      <div class="post__tag-list" transition:name={`tagList:${entry.slug}`}>
+      <div
+        class:list={[
+          'text-right mt-3',
+          entry.data.tagList && 'flex justify-between items-center',
+        ]}
+      >
         {
           entry.data.tagList && (
-            <TagList
-              items={calcTagCountByTagList(entry.data.tagList)}
-              textSize="base"
-              postSlug={entry.slug}
-            />
+            <TagList items={calcTagCountByTagList(entry.data.tagList)} />
           )
         }
+        <span class="text-sm">
+          {formatPostDate(entry.data.pubDate)}
+        </span>
       </div>
     </div>
     <Prose>
@@ -70,7 +69,7 @@ const { entry, enableTransition = false } = Astro.props
       @apply flex justify-center;
     }
     .post__title {
-      @apply text-4xl text-left font-extrabold text-theme-primary dark:text-theme-dark-primary mt-5;
+      @apply text-3xl text-left font-extrabold mt-5;
     }
     .post__desc {
       @apply text-gray-500 dark:text-gray-100 flex justify-center text-left mt-2;

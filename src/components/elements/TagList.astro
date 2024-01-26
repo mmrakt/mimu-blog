@@ -4,12 +4,10 @@ import type { TagCount } from '$/types'
 const {
   items,
   textSize = 'sm',
-  postSlug,
   visibleCount = false,
 } = Astro.props as {
   items: TagCount[]
   textSize: 'sm' | 'base' | 'lg'
-  postSlug?: string
   visibleCount?: boolean
 }
 ---
@@ -25,7 +23,6 @@ const {
         ]}
         href={`/tags/${item.name}`}
         title={item.name}
-        transition:name={postSlug && `item${index + 1}:${postSlug}`}
       >
         {item.name}
         {visibleCount && <div class="tag-count">{item.count}</div>}
