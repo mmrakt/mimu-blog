@@ -71,6 +71,8 @@ export const sortPostsByPubDate = (posts: Frontmatter[]): Frontmatter[] =>
 
 export const makeQiitaPosts = async (): Promise<Frontmatter[]> => {
   const token = import.meta.env.QIITA_TOKEN || ''
+  if (!token) return []
+
   const posts = await fetchPosts(QIITA_API_ENDPOINT, token)
   return mappingQiitaFeed(posts)
 }
@@ -146,7 +148,6 @@ export const calcTagCountByTagList = (tagList: Tag[]) => {
   return tagList
     .map((tag) => ({ name: tag, count: 1 }))
     .reduce((acc, cur) => {
-      console.log(acc, cur)
       const found = acc.find((el) => el.name === cur.name)
       if (found) {
         found.count += 1
@@ -165,7 +166,6 @@ export const calcTagCountByCollection = (
       post.data.tagList.map((tag) => ({ name: tag, count: 1 }))
     )
     .reduce((acc, cur) => {
-      console.log(acc, cur)
       const found = acc.find((el) => el.name === cur.name)
       if (found) {
         found.count += 1

@@ -35,8 +35,8 @@ const { tag } = Astro.params as { tag: Tag }
 
 <DefaultPageLayout
   content={{
-    title: `Posts by Tag: ${tag}`,
-    description: `all of the articles we have posted and linked so far under the tag: ${tag}`,
+    title: `Tag: ${tag}`,
+    description: ``,
   }}
 >
   <PostPreviewList posts={posts} />

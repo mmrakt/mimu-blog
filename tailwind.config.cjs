@@ -14,7 +14,8 @@ module.exports = {
   safelist: ['dark'],
   theme: {
     fontFamily: {
-      sans: ['Inter', ...fontFamily.sans],
+      sans: ['Inter', 'Hiragino Kaku Gothic ProN', ...fontFamily.sans],
+      menlo: ['Menlo'],
     },
     extend: {
       colors: {

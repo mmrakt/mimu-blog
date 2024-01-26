@@ -10,7 +10,7 @@ import { NAV_ITEMS } from '$/config'
         <li>
           <a
             class:list={[
-              `pb-1 border-b-2 hover:border-gray-400 hover:dark:border-gray-700 `,
+              `nav-item `,
               Astro.url.pathname !== NAV_ITEMS[navItemKey].path
                 ? 'border-gray-100 dark:border-gray-800'
                 : '',
@@ -31,5 +31,8 @@ import { NAV_ITEMS } from '$/config'
 <style>
   .nav-list {
     @apply inline-flex list-none gap-8 text-xl font-semibold text-theme-secondary dark:text-theme-dark-secondary py-2 flex-wrap mb-8;
+  }
+  .nav-item {
+    @apply pb-1 border-b-2 hover:border-gray-400 hover:dark:border-gray-700 font-menlo;
   }
 </style>

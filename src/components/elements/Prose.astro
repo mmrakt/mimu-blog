@@ -1,11 +1,15 @@
-<article class="prose dark:prose-dark">
-    <slot />
+<!-- NOTE: https://tailwindcss.com/docs/typography-plugin -->
+<article
+  class:list={[
+    'prose prose-base dark:prose-dark mx-auto',
+    // 'before:prose-h1:content-["#"] before:prose-h1:mr-2',
+    // 'before:prose-h2:content-["##"] before:prose-h2:mr-2',
+    'prose-h4:dark:text-gray-200',
+    'prose-h5:dark:text-gray-200',
+    'prose-a:text-purple-500',
+    'marker:prose-li:text-gray-600 prose-li:pl-0',
+    'prose-blockquote:text-base prose-blockquote:text-gray-500 prose-blockquote:not-italic prose-blockquote:dark:text-gray-400',
+  ]}
+>
+  <slot />
 </article>
-
-<style>
-    .prose {
-        @apply max-w-none
-        /* Size Modifiers: https://github.com/tailwindlabs/tailwindcss-typography#size-modifiers */
-        /* Color Themes: https://github.com/tailwindlabs/tailwindcss-typography#color-modifiers */
-    }
-</style>

@@ -35,14 +35,16 @@ const { entry, enableTransition = false } = Astro.props
       )
     }
     <div class="post__header">
-      <h1 class="post__title" transition:name={`title:${entry.slug}`}>
-        {entry.data.title}
-      </h1>
-      <h5 class="post__desc" transition:name={`date:${entry.slug}`}>
+      <div class="post__title-wrapper">
+        <h1 class="post__title" transition:name={`title:${entry.slug}`}>
+          {entry.data.title}
+        </h1>
+      </div>
+      <p class="post__desc" transition:name={`date:${entry.slug}`}>
         <span class="post__date">
           {formatPostDate(entry.data.pubDate)}
         </span>
-      </h5>
+      </p>
       <div class="post__tag-list" transition:name={`tagList:${entry.slug}`}>
         {
           entry.data.tagList && (
@@ -64,8 +66,11 @@ const { entry, enableTransition = false } = Astro.props
     .post__header {
       @apply py-4 mb-1 text-center md:text-left;
     }
+    .post__title-wrapper {
+      @apply flex justify-center;
+    }
     .post__title {
-      @apply text-4xl text-center font-extrabold text-theme-primary dark:text-theme-dark-primary mt-5;
+      @apply text-4xl text-left font-extrabold text-theme-primary dark:text-theme-dark-primary mt-5;
     }
     .post__desc {
       @apply text-gray-500 dark:text-gray-100 flex justify-center text-left mt-2;
