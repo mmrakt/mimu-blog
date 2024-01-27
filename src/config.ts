@@ -31,7 +31,7 @@ export const SITE = {
 }
 
 // Ink - Theme configuration
-export const PAGE_SIZE = 8
+export const PAGE_SIZE = 10
 export const USE_POST_IMG_OVERLAY = false
 export const USE_MEDIA_THUMBNAIL = true
 

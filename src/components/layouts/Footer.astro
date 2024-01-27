@@ -1,11 +1,15 @@
 ---
+import { SITE } from '$/config'
 ---
 
 <footer class="footer">
-  <p class="text-center">© 2021 mimu-memo All Right Reserved.</p>
+  <p class="footer__copyright">© 2021 {SITE.name} All Right Reserved.</p>
 </footer>
 <style>
   .footer {
     @apply py-6 border-t;
+  }
+  .footer__copyright {
+    @apply text-center text-sm md:text-base;
   }
 </style>
