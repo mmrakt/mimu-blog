@@ -25,7 +25,6 @@ export const SITE = {
   description: 'personal tech blog',
   url: 'https://mimu-memo.dev',
   githubUrl: 'https://github.com/mmrakt/mimu-blog',
-  listDrafts: true,
   image:
     'https://raw.githubusercontent.com/one-aalam/astro-ink/main/public/astro-banner.png',
 }
