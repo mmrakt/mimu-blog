@@ -5,12 +5,6 @@ tagList:
 pubDate: 2024-01-10
 ---
 
-## References
-
-- [CSS の新機能 @container コンテナクエリとスタイルクエリ - YouTube](https://www.youtube.com/watch?v=tgAZkJK_Sq8)
-- [コンテナクエリ @container が全ブラウザ対応。新時代のレスポンシブ対応を完全理解する](https://zenn.dev/tonkotsuboy_com/articles/css-container-query)
-- [Container Queries の沼へようこそ - kojika17](https://kojika17.com/2023/03/css-container-queries-swamp.html)
-
 ## 概要
 
 `@media`（メディアクエリ）の代替となる仕組み。  
@@ -163,18 +157,8 @@ e.g.
 [CSS Container Style Queries | Can I use... Support tables for HTML5, CSS3, etc](https://caniuse.com/css-container-queries-style)  
 Chrome と Edge でのみ利用可能。
 
-## Demo
+## References
 
-- 以下の codesandbox のリンクを開く
-
-- [codesandbox.io/p/sandbox/container-query-sample-z7xx6n?file=%2Findex.html%3A11%2C19](https://codesandbox.io/p/sandbox/container-query-sample-z7xx6n?file=%2Findex.html%3A11%2C19)
-
-- Folk ボタンを押してフォークする
-
-### Basic
-
-- `index.html`を開く
-
-### Advance
-
-- `demo.html`を開く
+- [CSS の新機能 @container コンテナクエリとスタイルクエリ - YouTube](https://www.youtube.com/watch?v=tgAZkJK_Sq8)
+- [コンテナクエリ @container が全ブラウザ対応。新時代のレスポンシブ対応を完全理解する](https://zenn.dev/tonkotsuboy_com/articles/css-container-query)
+- [Container Queries の沼へようこそ - kojika17](https://kojika17.com/2023/03/css-container-queries-swamp.html)

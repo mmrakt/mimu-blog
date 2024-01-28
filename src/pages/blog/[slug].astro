@@ -20,7 +20,7 @@ const entry = await getEntryBySlug('owned', slug!)
 const { Content } = await entry.render()
 ---
 
-<PostLayout entry={entry} enableTransition>
+<PostLayout entry={entry}>
   <Content
     components={{
       code: Code,

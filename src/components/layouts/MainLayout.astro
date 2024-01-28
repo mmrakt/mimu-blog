@@ -1,29 +1,35 @@
 ---
-import BaseLayout from './BaseLayout.astro'
 import Header from './Header.astro'
 import Footer from './Footer.astro'
 import Nav from './Nav.astro'
 import Portal from '../elements/Portal.astro'
 import SearchModal from '../elements/SearchModal.svelte'
+import WaveBG from '$/components/layouts/WaveBG.astro'
 
 const { isPostPage = false } = Astro.props as { isPostPage: boolean }
 ---
 
-<BaseLayout>
-  <br class="my-4" />
-  <Header />
-  <Nav />
-  <div
-    class:list={[
-      'min-h-[580px]',
-      isPostPage && 'max-w-2xl mx-auto mt-4 md:mt-0',
-    ]}
-  >
-    <slot />
+<body
+  class="font-sans text-gray-700 dark:text-gray-200 subpixel-antialiased min-h-screen bg-gray-100 dark:bg-gray-800"
+>
+  <WaveBG />
+  <div class="transition-colors">
+    <main class="mx-auto max-w-4xl px-3 lg:px-0">
+      <Header />
+      <Nav />
+      <div
+        class:list={[
+          'min-h-[580px]',
+          isPostPage && 'max-w-2xl mx-auto mt-4 md:mt-0',
+        ]}
+      >
+        <slot />
+      </div>
+      <br class="my-4" />
+      <Footer />
+      <Portal>
+        <SearchModal client:load />
+      </Portal>
+    </main>
   </div>
-  <br class="my-4" />
-  <Footer />
-  <Portal>
-    <SearchModal client:load />
-  </Portal>
-</BaseLayout>
+</body>

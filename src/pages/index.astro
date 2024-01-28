@@ -14,7 +14,7 @@ import { PAGE_SIZE } from '$/config'
 import { getCollection } from 'astro:content'
 
 const title = "mimu's blog"
-const description = "mimu's personal tech blog"
+const description = 'mimuの個人技術ブログ'
 
 const collection = await getCollection('owned'),
   qiitaPosts = await makeQiitaPosts(),
@@ -30,11 +30,7 @@ const posts = sortPostsByPubDate([
 ]).slice(0, PAGE_SIZE)
 ---
 
-<DefaultPageLayout
-  content={{ title, description }}
-  showPageHeader={false}
-  enableTransition={true}
->
+<DefaultPageLayout content={{ title, description }} showPageHeader={false}>
   <PostPreviewList posts={posts} heading="recent posts" />
   <div class="page__actions">
     <a class="action__go-to-blog" href="/blog" title="All Posts">
@@ -44,6 +40,9 @@ const posts = sortPostsByPubDate([
 </DefaultPageLayout>
 
 <style>
+  .page__actions {
+    @apply flex justify-end;
+  }
   .action__go-to-blog {
     @apply py-4 hover:underline font-menlo;
   }

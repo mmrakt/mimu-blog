@@ -3,7 +3,6 @@ import type { CollectionEntry } from 'astro:content'
 import MainLayout from '$/components/layouts/MainLayout.astro'
 import BaseHead from '$/components/layouts/BaseHead.astro'
 import Prose from '$/components/elements/Prose.astro'
-import { ViewTransitions } from 'astro:transitions'
 import TagList from '$/components/elements/TagList.astro'
 import {
   calcTagCountByTagList,
@@ -11,22 +10,21 @@ import {
   formatPostDate,
 } from '$/utils'
 import PostIcon from '$/components/elements/postIcon.astro'
+import { SITE } from '$/config'
 
 interface Props {
   entry: CollectionEntry<'owned'>
-  enableTransition?: boolean
 }
-const { entry, enableTransition = false } = Astro.props
+const { entry } = Astro.props
 ---
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang={SITE.lang}>
   <head>
     <BaseHead
-      title={entry.data.title}
+      title={`${entry.data.title} | ${SITE.name}`}
       description={await extractExcerptFromBody(entry.body)}
     />
-    {enableTransition && <ViewTransitions />}
   </head>
   <MainLayout isPostPage>
     {

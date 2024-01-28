@@ -23,6 +23,7 @@ export const SITE = {
   name: 'mimu-memo',
   title: 'mimu-memo',
   description: 'personal tech blog',
+  lang: 'ja',
   url: 'https://mimu-memo.dev',
   githubUrl: 'https://github.com/mmrakt/mimu-blog',
   image:

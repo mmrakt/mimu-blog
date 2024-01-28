@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
 import PostPreviewList from '$/components/elements/PostPreviewList.astro'
 import Paginator from '$/components/elements/Paginator.astro'
-import { PAGE_SIZE } from '$/config'
+import { PAGE_SIZE, SITE } from '$/config'
 
 import type { Page, PaginateFunction } from 'astro'
 import type { Frontmatter } from '$/types'
@@ -18,7 +18,7 @@ import {
 } from '$/utils'
 
 let title = 'Blog'
-let description = 'All the articles posted so far...'
+let description = '記事一覧ページ'
 
 export async function getStaticPaths({
   paginate,

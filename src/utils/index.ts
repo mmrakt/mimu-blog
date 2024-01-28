@@ -125,6 +125,8 @@ export const extractExcerptFromBody = async (body: string) => {
   const processing = await remark().use(strip).process(body)
   excerpt = processing.toString().replace(/\r|\n|\rn/g, '')
 
+  console.log(excerpt)
+
   if (excerpt.length > 70) {
     return `${excerpt.slice(0, 70)}...`
   }
