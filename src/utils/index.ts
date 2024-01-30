@@ -123,9 +123,7 @@ const mappingFeed = (
 export const extractExcerptFromBody = async (body: string) => {
   let excerpt = ''
   const processing = await remark().use(strip).process(body)
-  excerpt = processing.toString().replace(/\r|\n|\rn/g, '')
-
-  console.log(excerpt)
+  excerpt = processing.toString().replace(/\r|\n|\rn/g, ' ')
 
   if (excerpt.length > 70) {
     return `${excerpt.slice(0, 70)}...`

@@ -4,8 +4,7 @@ export const prerender = true
 import { getCollection } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
 import PostPreviewList from '$/components/elements/PostPreviewList.astro'
-import type { Tag } from '$/content/config'
-import type { Frontmatter } from '$/types'
+import type { Frontmatter, Tag } from '$/types'
 import { fromCollectionToFrontmatters } from '$/utils'
 
 export async function getStaticPaths({}) {
@@ -36,7 +35,7 @@ const { tag } = Astro.params as { tag: Tag }
 <DefaultPageLayout
   content={{
     title: `Tag: ${tag}`,
-    description: ``,
+    description: `タグ「${tag}」の記事一覧`,
   }}
 >
   <PostPreviewList posts={posts} />

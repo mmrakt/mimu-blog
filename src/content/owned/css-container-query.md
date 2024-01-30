@@ -86,7 +86,7 @@ e.g. `%`と`cpw`の比較
 
 ## スタイルクエリ
 
-[【CSS】コンテナスタイルクエリ(container style queries)について](<[https://yuito-blog.com/container-style-queries/](https://yuito-blog.com/container-style-queries/)>)
+[【CSS】コンテナスタイルクエリ(container style queries)について](https://yuito-blog.com/container-style-queries/)
 
 - 親要素のスタイル値に対するクエリ方法
 - `@container style(条件式)`と記述する

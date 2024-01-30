@@ -10,7 +10,7 @@ const { content, showPageHeader = true } = Astro.props
 <html lang={SITE.lang}>
   <head>
     <BaseHead
-      title={content.title ? `${SITE.title} | ${content.title}` : SITE.title}
+      title={`${content.title} | ${SITE.title}`}
       description={content.description}
     />
   </head>

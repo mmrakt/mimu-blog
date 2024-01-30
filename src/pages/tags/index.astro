@@ -7,7 +7,7 @@ import TagList from '$/components/elements/TagList.astro'
 import { calcTagCountByCollection } from '$/utils/index'
 
 let title = 'All Tags'
-let description = 'All the tags used so far...'
+let description = 'タグ一覧'
 
 const collection = await getCollection('owned')
 const tagMap = calcTagCountByCollection(collection)
