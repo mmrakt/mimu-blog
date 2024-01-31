@@ -91,6 +91,9 @@ devDependencies:
   eslint-plugin-astro:
     specifier: ^0.31.3
     version: 0.31.3(eslint@8.56.0)
+  eslint-plugin-svelte3:
+    specifier: ^4.0.0
+    version: 4.0.0(eslint@8.56.0)(svelte@4.2.8)
   globby:
     specifier: ^14.0.0
     version: 14.0.0
@@ -109,6 +112,9 @@ devDependencies:
   prettier-plugin-astro:
     specifier: ^0.10.0
     version: 0.10.0
+  prettier-plugin-svelte:
+    specifier: ^3.1.2
+    version: 3.1.2(prettier@2.8.8)(svelte@4.2.8)
   remark:
     specifier: ^15.0.1
     version: 15.0.1
@@ -2916,6 +2922,16 @@ packages:
       - supports-color
     dev: true
 
+  /eslint-plugin-svelte3@4.0.0(eslint@8.56.0)(svelte@4.2.8):
+    resolution: {integrity: sha512-OIx9lgaNzD02+MDFNLw0GEUbuovNcglg+wnd/UY0fbZmlQSz7GlQiQ1f+yX0XvC07XPcDOnFcichqI3xCwp71g==}
+    peerDependencies:
+      eslint: '>=8.0.0'
+      svelte: ^3.2.0
+    dependencies:
+      eslint: 8.56.0
+      svelte: 4.2.8
+    dev: true
+
   /eslint-restricted-globals@0.1.1:
     resolution: {integrity: sha512-d1cerYC0nOJbObxUe1kR8MZ25RLt7IHzR9d+IOupoMqFU03tYjo7Stjqj04uHx1xx7HKSE9/NjdeBiP4/jUP8Q==}
     dev: true
@@ -5644,6 +5660,16 @@ packages:
       '@astrojs/compiler': 1.8.2
       prettier: 2.8.8
       sass-formatter: 0.7.8
+    dev: true
+
+  /prettier-plugin-svelte@3.1.2(prettier@2.8.8)(svelte@4.2.8):
+    resolution: {integrity: sha512-7xfMZtwgAWHMT0iZc8jN4o65zgbAQ3+O32V6W7pXrqNvKnHnkoyQCGCbKeUyXKZLbYE0YhFRnamfxfkEGxm8qA==}
+    peerDependencies:
+      prettier: ^3.0.0
+      svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
+    dependencies:
+      prettier: 2.8.8
+      svelte: 4.2.8
     dev: true
 
   /prettier@2.8.8:
