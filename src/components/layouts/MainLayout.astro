@@ -2,8 +2,6 @@
 import Header from './Header.astro'
 import Footer from './Footer.astro'
 import Nav from './Nav.astro'
-import Portal from '../elements/Portal.astro'
-import SearchModal from '../elements/SearchModal.svelte'
 import WaveBG from '$/components/layouts/WaveBG.astro'
 
 const { isPostPage = false } = Astro.props as { isPostPage: boolean }
@@ -27,9 +25,6 @@ const { isPostPage = false } = Astro.props as { isPostPage: boolean }
       </div>
       <br class="my-4" />
       <Footer />
-      <Portal>
-        <SearchModal client:load />
-      </Portal>
     </main>
   </div>
 </body>

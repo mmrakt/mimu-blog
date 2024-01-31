@@ -9,7 +9,7 @@
     let currTheme: ThemeType = THEME_DARK
 
 
-    function toggleTheme() {
+            function toggleTheme() {
         window.document.documentElement.classList.toggle(THEME_DARK)
         currTheme = localStorage.getItem('theme') === THEME_DARK ? THEME_LIGHT : THEME_DARK
         // Update Storage

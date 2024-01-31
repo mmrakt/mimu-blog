@@ -1,19 +1,19 @@
 ---
 import { SITE } from '$/config'
-import SvgIcon from '../elements/SvgIcon.astro'
-import ModeSwitcherBtn from '../elements/ModeSwitcherBtn.svelte'
+import SvgIcon from '$/components/elements/SvgIcon.astro'
+import ModeSwitcherBtn from '$/components/elements/ModeSwitcherBtn.svelte'
+import HeaderIcon from '$/components/layouts/HeaderIcon.svelte'
 ---
 
 <header class="header">
   <div class="header__meta flex justify-between flex-1">
-    <h3 class="header__title dark:text-theme-dark-secondary">
-      <a href="/">{SITE.name}</a>
+    <h3 class="header__title flex">
+      <a href="/">
+        <HeaderIcon client:visible />
+      </a>
     </h3>
     <nav class="header__nav flex self-end">
       <ul class="header__ref-list">
-        <!-- <li>
-          <SearchBtn client:visible />
-        </li> -->
         <li>
           <a
             target="_blank"

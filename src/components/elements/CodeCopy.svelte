@@ -40,11 +40,11 @@
     class="absolute px-2 text-theme-primary dark:text-theme-dark-primary border-1 rounded-lg" 
     style="top: 6px; right: 8px;"
     style:display={isCodeBlock ? 'inline-block' : 'none'}
-    disabled={copied}
->
-    {#if copied}
-        <span transition:blur={{ amount: 50, opacity: 50 }}>&check;Copied</span>
-    {:else}
-        <span transition:fade>Copy</span>
-    {/if}
-</button>
+                disabled={copied}
+            >
+                {#if copied}
+                    <span transition:blur={{ amount: 50, opacity: 50 }}>&check;Copied</span>
+                {:else}
+                    <span transition:fade>Copy</span>
+                {/if}
+            </button>

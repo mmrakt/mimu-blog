@@ -5,7 +5,7 @@
     import ModeSwitcher from './ModeSwitcher.svelte'
     import SvgIcon from './SvgIcon.svelte'
 </script>
-<ModeSwitcher let:theme>
+        <ModeSwitcher let:theme>
     <SvgIcon>
         {#if theme === 'dark'}
             <circle cx="12" cy="12" r="5" transition:draw={{ duration: 1000, delay: 200, easing: quintOut }}></circle>
