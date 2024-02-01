@@ -9,9 +9,8 @@ dayjs().format()
 
 interface Props {
   post: Frontmatter
-  asCard?: boolean
 }
-const { post, asCard = false } = Astro.props
+const { post } = Astro.props
 
 let postTitlePrefix = ''
 switch (post.media) {
@@ -59,7 +58,7 @@ switch (post.media) {
 </li>
 <style>
   .post-preview {
-    @apply rounded-lg bg-theme-wave-light dark:bg-theme-wave-dark  p-4 flex flex-col justify-between;
+    @apply rounded-lg border-gray-300 dark:border-gray-700 border-[1px] dark:bg-theme-wave-dark  p-4 flex flex-col justify-between;
   }
   .post-preview__title {
     @apply mt-3 md:text-lg font-bold hover:underline text-base;

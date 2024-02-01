@@ -15,7 +15,7 @@ const {
   description = SITE.description,
   permalink = SITE.url,
 } = Astro.props
-const imageUrl = `${SITE.url}/img/${SITE.name}-ogp.png`
+const ogpImageUrl = `${SITE.url}/images/ogp.png`
 ---
 
 <meta charset="UTF-8" />
@@ -42,14 +42,14 @@ const imageUrl = `${SITE.url}/img/${SITE.name}-ogp.png`
 <meta property="og:title" content={title} />
 {permalink && <meta property="og:url" content={permalink} />}
 {description && <meta property="og:description" content={description} />}
-<meta property="og:image" content={imageUrl} />
+<meta property="og:image" content={ogpImageUrl} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content={title} />
 {permalink && <meta property="twitter:url" content={permalink} />}
 {description && <meta property="twitter:description" content={description} />}
-<meta property="twitter:image" content={imageUrl} />
+<meta property="twitter:image" content={ogpImageUrl} />
 
 <script is:inline>
   const theme = (() => {
