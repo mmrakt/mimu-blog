@@ -5,17 +5,10 @@ import strip from 'strip-markdown'
 
 import { NOTE_FEED_URL, QIITA_API_ENDPOINT, ZENN_FEED_URL } from '$/config'
 
-import type {
-  Frontmatter,
-  MediaType,
-  MediaTypeForDisplay,
-  QiitaPost,
-  TagCount,
-} from '$/types'
+import type { Frontmatter, MediaType, QiitaPost, TagCount } from '$/types'
 
 dayjs().format()
 
-import path from 'path'
 import type { CollectionEntry } from 'astro:content'
 const MONTHS = [
   'Jan',
@@ -37,31 +30,8 @@ export const toTitleCase = (str: string) =>
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
   })
 
-export const getMonthName = (date: Date) => MONTHS[new Date(date).getMonth()]
-
-export const getSlugFromPathname = (pathname: string) =>
-  path.basename(pathname, path.extname(pathname))
 export const formatPostDate = (date: Date | string) =>
   dayjs(date).format('YYYY-MM-DD')
-
-export const trimString = (str: string, limit: number) =>
-  str.length > limit ? `${str.substring(0, limit)}...` : str
-
-export const convertMediaTypeToSlug = (
-  mediaType: MediaTypeForDisplay
-): MediaType | '' => {
-  switch (mediaType) {
-    case 'mimu-memo':
-      return 'owned'
-    case 'Qiita':
-      return 'qiita'
-    case 'Zenn':
-      return 'zenn'
-    case 'note':
-      return 'note'
-  }
-  return ''
-}
 
 export const sortPostsByPubDate = (posts: Frontmatter[]): Frontmatter[] =>
   posts.sort(
