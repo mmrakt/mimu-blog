@@ -28,12 +28,22 @@ module.exports = {
         },
       },
       typography: (theme) => ({
+        dark: {
+          css: {
+            a: {
+              color: theme('colors.purple.400'),
+              '&:hover': {
+                color: theme('colors.purple.500'),
+              },
+            },
+          },
+        },
         DEFAULT: {
           css: {
             a: {
-              color: colors.dark.primary,
+              color: theme('colors.purple.700'),
               '&:hover': {
-                color: colors.primary,
+                color: theme('colors.purple.600'),
               },
             },
             blockquote: {

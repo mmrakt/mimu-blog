@@ -15,7 +15,9 @@ const tagMap = calcTagCountByCollection(collection)
   <ul class="list-none py-2 flex flex-wrap gap-2">
     {
       tagMap.map((item) => (
-        <Tag name={item.name} textSize="lg" count={item.count} />
+        <li>
+          <Tag name={item.name} textSize="lg" count={item.count} />
+        </li>
       ))
     }
   </ul>
