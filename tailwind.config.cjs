@@ -28,18 +28,6 @@ module.exports = {
         },
       },
       typography: (theme) => ({
-        dark: {
-          css: {
-            color: theme('colors.gray.200'),
-            blockquote: {
-              color: colors.dark.primary,
-              borderColor: colors.primary,
-            },
-            'blockquote > p::before, p::after': {
-              color: colors.primary,
-            },
-          },
-        },
         DEFAULT: {
           css: {
             a: {
