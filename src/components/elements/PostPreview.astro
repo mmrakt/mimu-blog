@@ -27,7 +27,7 @@ switch (post.media) {
 
 <li class="post-preview">
   <div class="post-preview__externalUrl"></div>
-  <h4 class="post-preview__title" transition:name={`title:${post.link}`}>
+  <h2 class="post-preview__title" transition:name={`title:${post.link}`}>
     <a
       href={post.media === 'owned' ? `/blog/${post.link}` : post.link}
       title={post.title}
@@ -36,7 +36,7 @@ switch (post.media) {
       <span>{postTitlePrefix}</span>
       {post.title}
     </a>
-  </h4>
+  </h2>
   <div
     class:list={[
       'text-right mt-3',
