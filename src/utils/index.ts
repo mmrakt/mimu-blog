@@ -5,19 +5,10 @@ import strip from 'strip-markdown'
 
 import { NOTE_FEED_URL, QIITA_API_ENDPOINT, ZENN_FEED_URL } from '$/config'
 
-import type {
-  Frontmatter,
-  MediaType,
-  MediaTypeForDisplay,
-  QiitaPost,
-  Tag,
-  TagCount,
-} from '$/types'
-import type { MarkdownInstance, MDXInstance } from 'astro'
+import type { Frontmatter, MediaType, QiitaPost, TagCount } from '$/types'
 
 dayjs().format()
 
-import path from 'path'
 import type { CollectionEntry } from 'astro:content'
 const MONTHS = [
   'Jan',
@@ -39,31 +30,8 @@ export const toTitleCase = (str: string) =>
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
   })
 
-export const getMonthName = (date: Date) => MONTHS[new Date(date).getMonth()]
-
-export const getSlugFromPathname = (pathname: string) =>
-  path.basename(pathname, path.extname(pathname))
 export const formatPostDate = (date: Date | string) =>
   dayjs(date).format('YYYY-MM-DD')
-
-export const trimString = (str: string, limit: number) =>
-  str.length > limit ? `${str.substring(0, limit)}...` : str
-
-export const convertMediaTypeToSlug = (
-  mediaType: MediaTypeForDisplay
-): MediaType | '' => {
-  switch (mediaType) {
-    case 'mimu-memo':
-      return 'owned'
-    case 'Qiita':
-      return 'qiita'
-    case 'Zenn':
-      return 'zenn'
-    case 'note':
-      return 'note'
-  }
-  return ''
-}
 
 export const sortPostsByPubDate = (posts: Frontmatter[]): Frontmatter[] =>
   posts.sort(
@@ -138,34 +106,18 @@ export const fromCollectionToFrontmatters = (
     return {
       pubDate: entry.data.pubDate,
       title: entry.data.title,
-      tagList: entry.data.tagList,
+      tag: entry.data.tag,
       link: entry.slug,
       media: 'owned',
     }
   })
 }
 
-export const calcTagCountByTagList = (tagList: Tag[]): TagCount[] => {
-  return tagList
-    .map((tag) => ({ name: tag, count: 1 }))
-    .reduce((acc, cur) => {
-      const found = acc.find((el) => el.name === cur.name)
-      if (found) {
-        found.count += 1
-      } else {
-        acc.push(cur)
-      }
-      return acc
-    }, [])
-}
-
 export const calcTagCountByCollection = (
   collection: CollectionEntry<'owned'>[]
 ): TagCount[] => {
   return collection
-    .flatMap((post) =>
-      post.data.tagList.map((tag) => ({ name: tag, count: 1 }))
-    )
+    .flatMap((post) => ({ name: post.data.tag, count: 1 }))
     .reduce((acc, cur) => {
       const found = acc.find((el) => el.name === cur.name)
       if (found) {

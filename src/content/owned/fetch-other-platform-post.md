@@ -1,7 +1,6 @@
 ---
 title: Gatsby製の個人ブログ上でQiitaやZenn経由の記事をまとめて一覧表示できるようにする
-tagList:
-  - gatsby
+tag: gatsby
 pubDate: 2023-04-04
 ---
 

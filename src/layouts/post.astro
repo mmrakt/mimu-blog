@@ -3,14 +3,10 @@ import type { CollectionEntry } from 'astro:content'
 import MainLayout from '$/components/layouts/MainLayout.astro'
 import BaseHead from '$/components/layouts/BaseHead.astro'
 import Prose from '$/components/elements/Prose.astro'
-import TagList from '$/components/elements/TagList.astro'
-import {
-  calcTagCountByTagList,
-  extractExcerptFromBody,
-  formatPostDate,
-} from '$/utils'
+import { extractExcerptFromBody, formatPostDate } from '$/utils'
 import PostIcon from '$/components/elements/postIcon.astro'
 import { SITE } from '$/config'
+import Tag from '$/components/elements/Tag.astro'
 
 interface Props {
   entry: CollectionEntry<'owned'>
@@ -28,8 +24,8 @@ const { entry } = Astro.props
   </head>
   <MainLayout isPostPage>
     {
-      entry.data.tagList && entry.data.tagList[0] !== 'other' && (
-        <PostIcon tag={entry.data.tagList[0]} link={entry.slug} />
+      entry.data.tag && entry.data.tag !== 'other' && (
+        <PostIcon tag={entry.data.tag} link={entry.slug} />
       )
     }
     <div class="post__header">
@@ -38,12 +34,8 @@ const { entry } = Astro.props
           {entry.data.title}
         </h1>
       </div>
-      <div class:list={['post__info', entry.data.tagList && 'has-tag-list']}>
-        {
-          entry.data.tagList && (
-            <TagList items={calcTagCountByTagList(entry.data.tagList)} />
-          )
-        }
+      <div class:list={['post__info', entry.data.tag && 'has-tag-list']}>
+        {entry.data.tag && <Tag name={entry.data.tag} />}
         <span class="post__date">
           {formatPostDate(entry.data.pubDate)}
         </span>

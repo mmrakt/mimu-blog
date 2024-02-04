@@ -1,7 +1,6 @@
 ---
 title: gatsby ブログ用に取得した独自ドメインを vercel に登録する際に `Invalid Configuration` からステータスが更新されずハマった
-tagList:
-  - gatsby
+tag: gatsby
 pubDate: 2021-10-16
 ---
 

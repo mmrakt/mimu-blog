@@ -1,7 +1,6 @@
 ---
 title: gatsby3⇨4 へのアップグレード時のハマりメモ
-tagList:
-  - gatsby
+tag: gatsby
 pubDate: 2021-12-04
 ---
 

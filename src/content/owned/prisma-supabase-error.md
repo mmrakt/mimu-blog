@@ -1,7 +1,6 @@
 ---
 title: Prisma × Supabaseの本番環境で起きた`prepared statement "sx" already exists` のエラーの対処
-tagList:
-  - other
+tag: other
 pubDate: 2022-10-05
 ---
 

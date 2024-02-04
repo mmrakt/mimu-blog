@@ -1,5 +1,4 @@
 ---
-export const prerender = true
 import type { Page, PaginateFunction } from 'astro'
 import { getCollection } from 'astro:content'
 import { PAGE_SIZE } from '$/config'
@@ -16,13 +15,11 @@ export async function getStaticPaths({
   const collection = await getCollection('owned')
   const allTags = new Set<string>()
   collection.map((post) => {
-    post.data.tagList && post.data.tagList.map((tag) => allTags.add(tag))
+    post.data.tag && allTags.add(post.data.tag)
   })
 
   return Array.from(allTags).flatMap((tag) => {
-    const filteredPosts = collection.filter((post) =>
-      post.data.tagList.includes(tag)
-    )
+    const filteredPosts = collection.filter((post) => post.data.tag === tag)
     return paginate(filteredPosts, {
       params: { tag },
       pageSize: PAGE_SIZE,

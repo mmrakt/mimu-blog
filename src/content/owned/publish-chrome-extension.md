@@ -1,7 +1,6 @@
 ---
 title: 自作 Chrome 拡張の公開手順（2023 年 1 月）
-tagList:
-  - other
+tag: other
 pubDate: 2023-01-29
 ---
 

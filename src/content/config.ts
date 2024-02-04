@@ -16,7 +16,7 @@ export const tagList = [
 const owned = defineCollection({
   schema: z.object({
     title: z.string(),
-    tagList: z.array(z.enum(tagList)),
+    tag: z.enum(tagList),
     pubDate: z
       .string()
       .or(z.date())

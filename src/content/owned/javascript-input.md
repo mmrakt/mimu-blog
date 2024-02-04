@@ -1,7 +1,6 @@
 ---
 title: JavaScript復習メモ
-tagList:
-  - javascript
+tag: javascript
 pubDate: 2023-04-15
 ---
 

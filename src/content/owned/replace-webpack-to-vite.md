@@ -1,7 +1,6 @@
 ---
 title: 自社サービスのビルドツールをWebpackからViteに置き換えてみた
-tagList:
-  - vite
+tag: vite
 pubDate: 2022-05-28
 ---
 

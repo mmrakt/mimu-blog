@@ -1,7 +1,6 @@
 ---
 title: React公式docを読んだメモ
-tagList:
-  - react
+tag: react
 pubDate: 2023/08/07
 ---
 

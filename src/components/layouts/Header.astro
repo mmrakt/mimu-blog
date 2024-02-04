@@ -5,15 +5,22 @@ import ModeSwitcherBtn from '$/components/elements/ModeSwitcherBtn.svelte'
 import HeaderIcon from '$/components/layouts/HeaderIcon.svelte'
 ---
 
-<header class="header">
+<header class="flex gap-4 border-b pt-8 pb-3">
   <div class="header__meta flex justify-between flex-1">
-    <h3 class="header__title flex">
-      <a href="/" class="flex items-center">
-        <HeaderIcon client:visible />
+    <div
+      class="text-lg font-extrabold text-theme-secondary dark:text-theme-dark-secondary flex"
+    >
+      <a
+        href="/"
+        class="flex items-center text-3xl font-menlo"
+        aria-label="go top page"
+      >
+        <!-- <HeaderIcon client:visible /> -->
+        mimu-memo
       </a>
-    </h3>
+    </div>
     <nav class="header__nav flex self-end">
-      <ul class="header__ref-list">
+      <ul class="flex gap-3 text-gray-400">
         <li>
           <a
             target="_blank"
@@ -35,18 +42,3 @@ import HeaderIcon from '$/components/layouts/HeaderIcon.svelte'
     </nav>
   </div>
 </header>
-
-<style>
-  .header {
-    @apply flex gap-4 border-b pt-8 pb-3;
-  }
-  .header__title {
-    @apply text-lg font-extrabold text-theme-secondary dark:text-theme-dark-secondary;
-  }
-  .header__desc {
-    @apply text-xl flex-1 dark:text-gray-200;
-  }
-  .header__ref-list {
-    @apply flex gap-3 text-gray-400;
-  }
-</style>

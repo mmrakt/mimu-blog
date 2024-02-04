@@ -1,11 +1,7 @@
 ---
-import { calcTagCountByTagList, formatPostDate, getMonthName } from '$/utils'
-import dayjs from 'dayjs'
-import TagList from '$/components/elements/TagList.astro'
+import { formatPostDate } from '$/utils'
 import type { Frontmatter } from '$/types'
-import PostIcon from '$/components/elements/postIcon.astro'
-
-dayjs().format()
+import Tag from '$/components/elements/Tag.astro'
 
 interface Props {
   post: Frontmatter
@@ -28,7 +24,7 @@ switch (post.media) {
 
 <li class="post-preview">
   <div class="post-preview__externalUrl"></div>
-  <h4 class="post-preview__title" transition:name={`title:${post.link}`}>
+  <h2 class="post-preview__title" transition:name={`title:${post.link}`}>
     <a
       href={post.media === 'owned' ? `/blog/${post.link}` : post.link}
       title={post.title}
@@ -37,22 +33,15 @@ switch (post.media) {
       <span>{postTitlePrefix}</span>
       {post.title}
     </a>
-  </h4>
+  </h2>
   <div
     class:list={[
       'text-right mt-3',
-      post.tagList && 'flex justify-between items-center',
+      post.tag && 'flex justify-between items-center',
     ]}
     transition:name={`date:${post.link}`}
   >
-    {
-      post.tagList && (
-        <TagList
-          items={calcTagCountByTagList(post.tagList)}
-          postSlug={post.link}
-        />
-      )
-    }
+    {post.tag && <Tag name={post.tag} />}
     <span class="post-preview__date">{formatPostDate(post.pubDate)}</span>
   </div>
 </li>
