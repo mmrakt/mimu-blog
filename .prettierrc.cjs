@@ -1,23 +1,17 @@
 module.exports = {
   semi: false,
-  arrowParens: 'always',
-  endOfLine: 'auto',
+  arrowParens: "always",
+  endOfLine: "auto",
   singleQuote: true,
-  htmlWhitespaceSensitivity: 'ignore',
+  htmlWhitespaceSensitivity: "ignore",
   tabWidth: 2,
-  plugins: ['prettier-plugin-astro', 'prettier-plugin-svelte'],
+  plugins: [require.resolve("prettier-plugin-astro")],
   overrides: [
     {
-      files: '*.astro',
+      files: "*.astro",
       options: {
-        parser: 'astro',
-      },
-    },
-    {
-      files: '*.svelte',
-      options: {
-        parser: 'svelte',
+        parser: "astro",
       },
     },
   ],
-}
+};
