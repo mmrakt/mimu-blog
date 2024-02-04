@@ -29,8 +29,6 @@ export const SITE = {
       ? 'http://localhost:4321'
       : 'https://mimu-memo.com',
   githubUrl: 'https://github.com/mmrakt/mimu-blog',
-  image:
-    'https://raw.githubusercontent.com/one-aalam/astro-ink/main/public/astro-banner.png',
 }
 
 // Ink - Theme configuration

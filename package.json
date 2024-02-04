@@ -1,6 +1,6 @@
 {
-  "name": "astro-ink",
-  "version": "2.0.0",
+  "name": "mimu-memo",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {

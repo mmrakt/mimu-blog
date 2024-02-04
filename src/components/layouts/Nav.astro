@@ -12,7 +12,7 @@ import { NAV_ITEMS } from '$/config'
             class:list={[
               'pb-1 hover:border-b-2 hover:border-gray-400 hover:dark:border-gray-700 font-menlo',
               Astro.url.pathname === NAV_ITEMS[navItemKey].path
-                ? 'border-theme-primary hover:border-theme-primary border-b-2'
+                ? 'border-theme-primary hover:border-theme-primary hover:dark:border-theme-primary border-b-2'
                 : '',
             ]}
             href={NAV_ITEMS[navItemKey].path}

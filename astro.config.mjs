@@ -12,7 +12,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 
 export default defineConfig(
   /** @type {import('astro').AstroUserConfig} */ {
-    site: 'https://astro-ink.vercel.app',
+    site: 'https://mimu-memo.com',
     markdown: {
       syntaxHighlight: 'shiki',
       shikiConfig: {
