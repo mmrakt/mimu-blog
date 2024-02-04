@@ -4,18 +4,15 @@ import { NAV_ITEMS } from '$/config'
 ---
 
 <nav class="nav py-3">
-  <ul class="nav-list dark:text-theme-dark-secondary">
+  <ul class="nav-list">
     {
       Object.keys(NAV_ITEMS).map((navItemKey) => (
         <li>
           <a
             class:list={[
-              `nav-item `,
-              Astro.url.pathname !== NAV_ITEMS[navItemKey].path
-                ? 'border-gray-100 dark:border-gray-800'
-                : '',
+              'pb-1 hover:border-b-2 hover:border-gray-400 hover:dark:border-gray-700 font-menlo',
               Astro.url.pathname === NAV_ITEMS[navItemKey].path
-                ? 'border-theme-primary'
+                ? 'border-theme-primary hover:border-theme-primary border-b-2'
                 : '',
             ]}
             href={NAV_ITEMS[navItemKey].path}
@@ -30,9 +27,6 @@ import { NAV_ITEMS } from '$/config'
 </nav>
 <style>
   .nav-list {
-    @apply inline-flex list-none gap-8 text-xl font-semibold text-theme-secondary dark:text-theme-dark-secondary py-2 flex-wrap md:mb-8;
-  }
-  .nav-item {
-    @apply pb-1 border-b-2 hover:border-gray-400 hover:dark:border-gray-700 font-menlo;
+    @apply inline-flex list-none gap-8 text-xl font-semibold py-2 flex-wrap md:mb-8;
   }
 </style>

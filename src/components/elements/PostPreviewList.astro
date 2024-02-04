@@ -4,22 +4,12 @@ import type { Frontmatter } from '$/types'
 
 interface Props {
   posts: Frontmatter[]
-  heading?: string
   mode?: 'row' | 'col'
 }
 
-const { posts, heading, mode = 'col' } = Astro.props
+const { posts, mode = 'col' } = Astro.props
 ---
 
-{
-  heading ? (
-    <h5 class={`post-preview__heading post-preview__heading--${mode} ink-h`}>
-      {heading}
-    </h5>
-  ) : (
-    ''
-  )
-}
 <section class={`post-preview-list post-preview-list--${mode}`}>
   <ul class="grid grid-cols-1 md:grid-cols-2 md:gap-6 gap-4">
     {posts.map((post) => <PostPreview post={post} />)}
