@@ -1,12 +1,11 @@
 ---
 title: Apollo Client が読み込めなくてハマった
-tagList:
-  - other
+tag: other
 pubDate: 2021-12-29
 ---
 
-<!-- Next.js製のアプリでApollo Clientを使用する際に、下記エラーが解消できずしばらくはまってしまった。
-3
+Next.js 製のアプリで Apollo Client を使用する際に、下記エラーが解消できずしばらくはまってしまった。
+
 ```
 Invariant Violation: Could not find "client" in the context or passed in as an option. Wrap the root component in an <ApolloProvider>, or pass an ApolloClient instance in via options.
 ```
@@ -14,19 +13,19 @@ Invariant Violation: Could not find "client" in the context or passed in as an o
 簡略化するとコードは以下の状態。
 
 ```js
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
-import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client'
+import { ApolloProvider } from '@apollo/react-hooks'
 
 function MyApp(props: AppProps) {
   const client = () => {
     return new ApolloClient({
       link: new HttpLink({
-        uri: "http://localhost:8080/v1/graphql",
-        credentials: "same-origin",
+        uri: 'http://localhost:8080/v1/graphql',
+        credentials: 'same-origin',
       }),
       cache: new InMemoryCache(),
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -36,7 +35,7 @@ function MyApp(props: AppProps) {
         ...
       </ApolloProvider>
     </>
-  );
+  )
 }
 ```
 
@@ -66,9 +65,9 @@ TypeError: client.watchQuery is not a function
 
 ```js
 const client = new ApolloClient({
-  uri: "http://localhost:8080/v1/graphql",
+  uri: 'http://localhost:8080/v1/graphql',
   cache: new InMemoryCache(),
-});
+})
 ```
 
-これで無事エラーが解消できた。 -->
+これで無事エラーが解消できた。

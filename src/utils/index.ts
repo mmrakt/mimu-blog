@@ -10,10 +10,8 @@ import type {
   MediaType,
   MediaTypeForDisplay,
   QiitaPost,
-  Tag,
   TagCount,
 } from '$/types'
-import type { MarkdownInstance, MDXInstance } from 'astro'
 
 dayjs().format()
 
@@ -138,34 +136,18 @@ export const fromCollectionToFrontmatters = (
     return {
       pubDate: entry.data.pubDate,
       title: entry.data.title,
-      tagList: entry.data.tagList,
+      tag: entry.data.tag,
       link: entry.slug,
       media: 'owned',
     }
   })
 }
 
-export const calcTagCountByTagList = (tagList: Tag[]): TagCount[] => {
-  return tagList
-    .map((tag) => ({ name: tag, count: 1 }))
-    .reduce((acc, cur) => {
-      const found = acc.find((el) => el.name === cur.name)
-      if (found) {
-        found.count += 1
-      } else {
-        acc.push(cur)
-      }
-      return acc
-    }, [])
-}
-
 export const calcTagCountByCollection = (
   collection: CollectionEntry<'owned'>[]
 ): TagCount[] => {
   return collection
-    .flatMap((post) =>
-      post.data.tagList.map((tag) => ({ name: tag, count: 1 }))
-    )
+    .flatMap((post) => ({ name: post.data.tag, count: 1 }))
     .reduce((acc, cur) => {
       const found = acc.find((el) => el.name === cur.name)
       if (found) {

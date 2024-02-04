@@ -1,7 +1,6 @@
 ---
 title: Contentfulで開発環境、本番環境で記事を出し分ける
-tagList:
-  - 'other'
+tag: 'other'
 pubDate: 2021-10-05
 ---
 

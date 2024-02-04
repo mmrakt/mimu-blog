@@ -1,7 +1,6 @@
 ---
 title: Next.js での API リクエスト時のエラー API resolved without sending a response ではまった
-tagList:
-  - nextjs
+tag: nextjs
 pubDate: 2022-01-29
 ---
 

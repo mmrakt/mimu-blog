@@ -1,7 +1,6 @@
 ---
 title: renderHookでcurrentがundefinedになる原因
-tagList:
-  - react
+tag: react
 pubDate: 2023-02-23
 ---
 

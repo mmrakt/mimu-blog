@@ -11,12 +11,12 @@ export async function getStaticPaths({}) {
   const collection = await getCollection('owned')
   const allTags = new Set()
   collection.map((entry) => {
-    entry.data.tagList && entry.data.tagList.map((tag) => allTags.add(tag))
+    entry.data.tag && allTags.add(entry.data.tag)
   })
 
   return Array.from(allTags).map((tag) => {
-    const filteredCollection = collection.filter((entry) =>
-      entry.data.tagList.includes(tag)
+    const filteredCollection = collection.filter(
+      (entry) => entry.data.tag === tag
     )
 
     return {

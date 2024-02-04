@@ -1,7 +1,6 @@
 ---
 title: Astroでマークダウン内の外部リンクにtarget="_blank"を付与する
-tagList:
-  - astro
+tag: astro
 pubDate: 2024/01/30
 ---
 

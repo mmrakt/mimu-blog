@@ -1,7 +1,6 @@
 ---
 title: Tailwind CSS を v3+に上げると prettier-plugin-tailwind でエラーになる
-tagList:
-  - tailwindcss
+tag: tailwindcss
 pubDate: 2022-02-12
 ---
 

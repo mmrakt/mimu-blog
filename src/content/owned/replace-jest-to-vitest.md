@@ -1,7 +1,6 @@
 ---
 title: Jest から Vitest への乗り換えメモ
-tagList:
-  - vite
+tag: vite
 pubDate: 2022-10-15
 ---
 

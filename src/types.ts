@@ -16,7 +16,7 @@ export type Frontmatter = {
   title: string
   link: string
   media: MediaType // TODO: 汎用化する
-  tagList?: Tag[]
+  tag?: Tag
 }
 
 export type PaginatedPost = {

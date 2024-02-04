@@ -1,7 +1,6 @@
 ---
 title: CSS Container Queryの調査メモ
-tagList:
-  - css
+tag: css
 pubDate: 2024-01-10
 ---
 
