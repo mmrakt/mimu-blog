@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content'
 import DefaultPageLayout from '$/layouts/default.astro'
 import PostPreviewList from '$/components/elements/PostPreviewList.astro'
 import type { Frontmatter, Tag } from '$/types'
-import { fromCollectionToFrontmatters } from '$/utils'
+import { fromCollectionToFrontmatters, sortPostsByPubDate } from '$/utils'
 
 export async function getStaticPaths({}) {
   const collection = await getCollection('owned')
@@ -20,7 +20,9 @@ export async function getStaticPaths({}) {
     return {
       params: { tag },
       props: {
-        posts: fromCollectionToFrontmatters(filteredCollection),
+        posts: sortPostsByPubDate(
+          fromCollectionToFrontmatters(filteredCollection)
+        ),
       },
     }
   })
