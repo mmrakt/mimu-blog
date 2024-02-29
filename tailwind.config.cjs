@@ -31,9 +31,9 @@ module.exports = {
         dark: {
           css: {
             a: {
-              color: theme('colors.purple.400'),
+              color: theme('colors.cyan.400'),
               '&:hover': {
-                color: theme('colors.purple.500'),
+                color: theme('colors.cyan.500'),
               },
             },
           },
@@ -41,9 +41,9 @@ module.exports = {
         DEFAULT: {
           css: {
             a: {
-              color: theme('colors.purple.700'),
+              color: theme('colors.cyan.700'),
               '&:hover': {
-                color: theme('colors.purple.600'),
+                color: theme('colors.cyan.600'),
               },
             },
             blockquote: {
@@ -53,6 +53,9 @@ module.exports = {
             },
             'blockquote > p::before, p::after': {
               color: colors.dark.primary,
+            },
+            ':is(.dark .prose > :not(pre, h2, h3, h4, h5) code)': {
+              backgroundColor: '#000',
             },
             h1: {
               color: 'currentColor',

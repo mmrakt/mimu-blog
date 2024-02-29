@@ -26,22 +26,21 @@ Error: "next start" does not work with "output: export" configuration. Use "npx 
 
 案内に従い、Vercel のスタンドアロンのライブラリの`serve`を入れてコマンドを書き換えた。
 
-```package.json
+```json:package.json
 -   "build": "next build && next export",
 -   "start": "next start",
 +   "build": "next build",
 +   "start": "serve out",
 ```
 
-次に`next/link`の`Link`コンポーネントの仕様が変わり、中に`a`タグが不要に（入れられなく）なったため、手動で削除を実施。
-
+次に`next/link`の`Link`コンポーネントの仕様が変わり、中に`a`タグが不要に（入れられなく）なったため、手動で削除を実施。\
 （小規模アプリにつき 3 つくらいしか無いので瞬殺だったが、大規模アプリだとここが辛そう）
 
 ### Storybook のアップグレード
 
 次に storybook を v6⇨v7 にアップグレードする。
 
-基本的には`npx storybook@latest upgrade`のコマンドを実行するたけでほとんど完結する想定。
+基本的には`npx storybook@latest upgrade`のコマンドを実行するたけでほとんど完結する想定。\
 （[公式ガイド](https://storybook.js.org/recipes/next)）
 
 実行時の設定内容は以下の通り。
@@ -65,7 +64,7 @@ Do you want to run the 'sb-scripts' migration on your project? … yes
 
 `.storybook/preview.tsx`内に以下の記述があり、その影響で Storybook のプレビュー環境で`Cannot redefine property: default`のエラーが発生。
 
-```jsx
+```tsx:.storybook/preview.tsx
 // next/imageコンポーネントを通常のimgに置き換える
 // see: https://github.com/vercel/next.js/issues/18393#issuecomment-765426413
 Object.defineProperty(nextImage, 'default', {
@@ -79,12 +78,10 @@ https://github.com/storybookjs/storybook/issues/23684#issuecomment-1794357809
 
 上記設定を削除しエラーは回避できたが、プレビュー上では画像が表示できていない（404 の）状態。
 
-下記記事を参考に`.storybook/main.js`に`staticDirs: ['../public'],`のオプションを追加。
+下記記事を参考に`.storybook/main.js`に`staticDirs: ['../public'],`のオプションを追加。\
 https://stackoverflow.com/questions/77599258/images-loaded-using-next-image-isnt-shown-in-storybook
 
-また同時に storybook CLI のコマンドの`-s`オプションが非推奨になっていたためオプションを削除した。
-
-（[公式](https://storybook.js.org/docs/api/cli-options)））
+また同時に storybook CLI のコマンドの`-s`オプションが非推奨になっていたためオプションを削除した。（[公式](https://storybook.js.org/docs/api/cli-options)）
 
 これで無事 storybook 上で画像の表示に成功。
 
