@@ -3,7 +3,7 @@ import { SITE } from '$/config'
 import BaseHead from '$/components/layouts/BaseHead.astro'
 import MainLayout from '$/components/layouts/MainLayout.astro'
 
-const { content, showPageHeader = true } = Astro.props
+const { content } = Astro.props
 ---
 
 <!DOCTYPE html>
@@ -15,13 +15,6 @@ const { content, showPageHeader = true } = Astro.props
     />
   </head>
   <MainLayout>
-    {
-      showPageHeader && (
-        <div class="page__header">
-          <h1 class="page__title">{content.title}</h1>
-        </div>
-      )
-    }
     <slot />
   </MainLayout>
 
