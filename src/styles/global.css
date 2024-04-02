@@ -76,34 +76,3 @@ html.dark {
 .prose > :not(pre, h2, h3, h4, h5) code {
   @apply font-normal rounded-sm py-[2px] px-1 mx-1 before:hidden after:hidden dark:bg-gray-900 dark:text-white;
 }
-
-/* custom cursor */
-html,
-body {
-  &,
-  * {
-    cursor: none;
-  }
-}
-
-.cursor-dot,
-.cursor-dot-outline {
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.cursor-dot {
-  @apply w-2 h-2 bg-cyan-700;
-}
-
-.cursor-dot-outline {
-  width: 40px;
-  height: 40px;
-  @apply w-10 h-10 bg-cyan-800 opacity-50;
-}
