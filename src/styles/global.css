@@ -74,5 +74,5 @@ html.dark {
 
 /* prose style */
 .prose > :not(pre, h2, h3, h4, h5) code {
-  @apply font-normal bg-purple-100 rounded-sm py-[2px] px-1 mx-1 before:hidden after:hidden dark:bg-transparent dark:text-white;
+  @apply font-normal rounded-sm py-[2px] px-1 mx-1 before:hidden after:hidden dark:bg-gray-900 dark:text-white;
 }
