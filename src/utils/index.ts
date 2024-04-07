@@ -10,20 +10,6 @@ import type { Frontmatter, MediaType, QiitaPost, TagCount } from '$/types'
 dayjs().format()
 
 import type { CollectionEntry } from 'astro:content'
-const MONTHS = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-]
 
 export const toTitleCase = (str: string) =>
   str.replace(/\w\S*/g, function (txt) {

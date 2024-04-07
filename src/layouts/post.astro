@@ -4,7 +4,7 @@ import MainLayout from '$/components/layouts/MainLayout.astro'
 import BaseHead from '$/components/layouts/BaseHead.astro'
 import Prose from '$/components/elements/Prose.astro'
 import { extractExcerptFromBody, formatPostDate } from '$/utils'
-import PostIcon from '$/components/elements/postIcon.astro'
+import TagIcon from '$/components/elements/TagIcon.astro'
 import { SITE } from '$/config'
 import Tag from '$/components/elements/Tag.astro'
 
@@ -25,7 +25,7 @@ const { entry } = Astro.props
   <MainLayout isPostPage>
     {
       entry.data.tag && entry.data.tag !== 'other' && (
-        <PostIcon tag={entry.data.tag} link={entry.slug} />
+        <TagIcon tag={entry.data.tag} link={entry.slug} size="large" />
       )
     }
     <div class="post__header">

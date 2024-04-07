@@ -6,6 +6,7 @@ import DefaultPageLayout from '$/layouts/default.astro'
 import PostPreviewList from '$/components/elements/PostPreviewList.astro'
 import Paginator from '$/components/elements/Paginator.astro'
 import type { Frontmatter, Tag } from '$/types'
+import TagIcon from '$/components/elements/TagIcon.astro'
 
 export async function getStaticPaths({
   paginate,
@@ -40,6 +41,10 @@ const { page, tag } = Astro.props as Props
     description: `タグ「${tag}」の記事一覧`,
   }}
 >
+  <h3 class="flex gap-4 text-2xl font-bold">
+    {tag !== 'other' && <TagIcon tag={tag} />}
+    {tag}
+  </h3>
   <PostPreviewList posts={page.data} />
   <Paginator page={page} />
 </DefaultPageLayout>
