@@ -1,7 +1,10 @@
 ---
 import { getEntryBySlug, getCollection } from 'astro:content'
-import PostLayout from '$/layouts/post.astro'
+import PostDetail from '$/components/layouts/PostDetail.astro'
 import Code from '../../components/elements/Code.astro'
+import BaseLayout from '$/layouts/BaseLayout.astro'
+import { SITE } from '$/config'
+import { extractExcerptFromBody } from '$/utils'
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('owned')
@@ -18,10 +21,17 @@ const entry = await getEntryBySlug('owned', slug!)
 const { Content } = await entry.render()
 ---
 
-<PostLayout entry={entry}>
-  <Content
-    components={{
-      code: Code,
-    }}
-  />
-</PostLayout>
+<BaseLayout
+  content={{
+    title: `${entry.data.title} | ${SITE.name}`,
+    description: await extractExcerptFromBody(entry.body),
+  }}
+>
+  <PostDetail entry={entry}>
+    <Content
+      components={{
+        code: Code,
+      }}
+    />
+  </PostDetail>
+</BaseLayout>

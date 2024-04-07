@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import Prose from '$/components/elements/Prose.astro'
+import { formatPostDate } from '$/utils'
+import TagIcon from '$/components/elements/TagIcon.astro'
+import Tag from '$/components/elements/Tag.astro'
+
+interface Props {
+  entry: CollectionEntry<'owned'>
+}
+const { entry } = Astro.props
+---
+
+<article class="max-w-2xl mx-auto mt-4 md:mt-0">
+  {
+    entry.data.tag && entry.data.tag !== 'other' && (
+      <TagIcon tag={entry.data.tag} link={entry.slug} size="large" />
+    )
+  }
+  <div class="py-4 mb-1 text-center md:text-left">
+    <div class="flex justify-center">
+      <h1
+        class="text-xl md:text-3xl text-left font-extrabold mt-5"
+        transition:name={`title:${entry.slug}`}
+      >
+        {entry.data.title}
+      </h1>
+    </div>
+    <div
+      class:list={[
+        'text-right mt-3',
+        entry.data.tag && 'flex justify-between items-center',
+      ]}
+    >
+      {entry.data.tag && <Tag name={entry.data.tag} />}
+      <span class="md:text-sm text-xs">
+        {formatPostDate(entry.data.pubDate)}
+      </span>
+    </div>
+  </div>
+  <Prose>
+    <slot />
+  </Prose>
+</article>

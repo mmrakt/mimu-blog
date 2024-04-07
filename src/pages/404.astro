@@ -1,12 +1,12 @@
 ---
-import DefaultPageLayout from '$/layouts/default.astro'
+import BaseLayout from '$/layouts/BaseLayout.astro'
 
 const title = 'Page Not Found'
 ---
 
-<DefaultPageLayout content={{ title, description: '' }}>
+<BaseLayout content={{ title, description: '' }}>
   <div class="flex flex-col gap-10 items-center pt-10">
     <div class="text-5xl">404</div>
     <h1 class="text-xl">お探しのページが見つかりませんでした</h1>
   </div>
-</DefaultPageLayout>
+</BaseLayout>

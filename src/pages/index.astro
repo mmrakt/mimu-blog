@@ -1,5 +1,5 @@
 ---
-import DefaultPageLayout from '$/layouts/default.astro'
+import BaseLayout from '$/layouts/BaseLayout.astro'
 import PostPreviewList from '$/components/elements/PostPreviewList.astro'
 import {
   makeQiitaPosts,
@@ -28,20 +28,11 @@ const posts = sortPostsByPubDate([
 ]).slice(0, PAGE_SIZE)
 ---
 
-<DefaultPageLayout content={{ title, description }}>
+<BaseLayout content={{ title, description }}>
   <PostPreviewList posts={posts} />
-  <div class="page__actions">
-    <a class="action__go-to-blog" href="/blog" title="All Posts">
+  <div class="flex justify-end">
+    <a class="py-4 hover:underline" href="/blog" title="All Posts">
       All Posts &rarr;
     </a>
   </div>
-</DefaultPageLayout>
-
-<style>
-  .page__actions {
-    @apply flex justify-end;
-  }
-  .action__go-to-blog {
-    @apply py-4 hover:underline font-menlo;
-  }
-</style>
+</BaseLayout>

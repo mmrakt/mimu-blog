@@ -2,11 +2,12 @@
 import type { Page, PaginateFunction } from 'astro'
 import { getCollection } from 'astro:content'
 import { PAGE_SIZE } from '$/config'
-import DefaultPageLayout from '$/layouts/default.astro'
+import BaseLayout from '$/layouts/BaseLayout.astro'
 import PostPreviewList from '$/components/elements/PostPreviewList.astro'
 import Paginator from '$/components/elements/Paginator.astro'
 import type { Frontmatter, Tag } from '$/types'
 import TagIcon from '$/components/elements/TagIcon.astro'
+import TagWithIcon from '$/components/elements/TagWithIcon.astro'
 
 export async function getStaticPaths({
   paginate,
@@ -35,16 +36,13 @@ type Props = {
 const { page, tag } = Astro.props as Props
 ---
 
-<DefaultPageLayout
+<BaseLayout
   content={{
     title: `Tag: ${tag}`,
     description: `タグ「${tag}」の記事一覧`,
   }}
 >
-  <h3 class="flex gap-4 text-2xl font-bold">
-    {tag !== 'other' && <TagIcon tag={tag} />}
-    {tag}
-  </h3>
+  <TagWithIcon tag={tag} />
   <PostPreviewList posts={page.data} />
   <Paginator page={page} />
-</DefaultPageLayout>
+</BaseLayout>

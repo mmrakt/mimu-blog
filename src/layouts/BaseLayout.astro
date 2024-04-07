@@ -1,0 +1,41 @@
+---
+import { SITE } from '$/config'
+import BaseHead from '$/components/layouts/BaseHead.astro'
+import Footer from '$/components/layouts/Footer.astro'
+import Header from '$/components/layouts/Header.astro'
+import Nav from '$/components/layouts/Nav.astro'
+import WaveBG from '$/components/layouts/WaveBG.astro'
+
+type Props = {
+  content: {
+    title: string
+    description: string
+  }
+}
+const { content } = Astro.props as Props
+---
+
+<!DOCTYPE html>
+<html lang={SITE.lang}>
+  <head>
+    <BaseHead
+      title={`${content.title} | ${SITE.title}`}
+      description={content.description}
+    />
+  </head>
+  <body
+    class="font-menlo text-gray-700 dark:text-gray-200 subpixel-antialiased min-h-screen bg-gray-100 dark:bg-gray-800"
+  >
+    <WaveBG />
+    <div class="transition-colors">
+      <main class="mx-auto max-w-4xl px-3 lg:px-0">
+        <Header />
+        <Nav />
+        <div class="min-h-[580px]">
+          <slot />
+        </div>
+        <Footer />
+      </main>
+    </div>
+  </body>
+</html>
