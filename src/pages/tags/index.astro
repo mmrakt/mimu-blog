@@ -1,8 +1,8 @@
 ---
 import { getCollection } from 'astro:content'
-import DefaultPageLayout from '$/layouts/default.astro'
+import BaseLayout from '$/layouts/BaseLayout.astro'
 import { calcTagCountByCollection } from '$/utils/index'
-import Tag from '$/components/elements/Tag.astro'
+import TagList from '$/components/layouts/TagList.astro'
 
 let title = 'Tags'
 let description = 'タグ一覧'
@@ -11,14 +11,6 @@ const collection = await getCollection('owned')
 const tagMap = calcTagCountByCollection(collection)
 ---
 
-<DefaultPageLayout content={{ title, description }}>
-  <ul class="list-none py-2 flex flex-wrap gap-2">
-    {
-      tagMap.map((item) => (
-        <li>
-          <Tag name={item.name} textSize="lg" count={item.count} />
-        </li>
-      ))
-    }
-  </ul>
-</DefaultPageLayout>
+<BaseLayout content={{ title, description }}>
+  <TagList list={tagMap} />
+</BaseLayout>

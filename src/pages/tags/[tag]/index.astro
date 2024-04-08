@@ -1,9 +1,11 @@
 ---
 import { getCollection } from 'astro:content'
-import DefaultPageLayout from '$/layouts/default.astro'
+import BaseLayout from '$/layouts/BaseLayout.astro'
 import PostPreviewList from '$/components/elements/PostPreviewList.astro'
 import type { Frontmatter, Tag } from '$/types'
 import { fromCollectionToFrontmatters, sortPostsByPubDate } from '$/utils'
+import TagIcon from '$/components/elements/TagIcon.astro'
+import TagWithIcon from '$/components/elements/TagWithIcon.astro'
 
 export async function getStaticPaths({}) {
   const collection = await getCollection('owned')
@@ -32,11 +34,12 @@ const { posts } = Astro.props as { posts: Frontmatter[] }
 const { tag } = Astro.params as { tag: Tag }
 ---
 
-<DefaultPageLayout
+<BaseLayout
   content={{
     title: `Tag: ${tag}`,
     description: `タグ「${tag}」の記事一覧`,
   }}
 >
+  <TagWithIcon tag={tag} />
   <PostPreviewList posts={posts} />
-</DefaultPageLayout>
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '$/layouts/BaseLayout.astro'
+
+const title = 'About'
+const description = 'サイトについて'
+
+const links = [
+  {
+    name: 'GitHub',
+    href: 'https://github.com/mmrakt',
+  },
+  {
+    name: 'X',
+    href: 'https://twitter.com/mmrakt0716',
+  },
+  {
+    name: 'Qiita',
+    href: 'https://qiita.com/mmrakt',
+  },
+  {
+    name: 'Zenn',
+    href: 'https://zenn.dev/mmrakt',
+  },
+  {
+    name: 'Portfolio',
+    href: 'https://mimuuuu.net/',
+  },
+]
+---
+
+<BaseLayout content={{ title, description }}>
+  <div class="mt-8">
+    <section class="border-[1px] border-cyan-400 rounded-lg p-8">
+      <h2 class="text-2xl font-bold text-center">Author</h2>
+      <div class="flex mt-4 justify-center">
+        <h3 class="text-2xl font-bold">👋 Hi! I'm mimu.</h3>
+      </div>
+      <div class="mt-4">
+        <p class="leading-loose text-center">
+          東京在住のフロントエンドエンジニア♂。<br
+          />趣味はお酒、筋トレ、サイクリング、Web開発。<br />
+          このサイトでは主にフロントエンドについて学んだことを私のメモ代わりにつらつらとまとめています。<br
+          />
+        </p>
+      </div>
+      <h2 class="text-2xl font-bold text-center mt-8">Links</h2>
+      <ul class="flex mt-4 gap-1 justify-center">
+        {
+          links.map((link, i) => (
+            <li class="flex gap-1">
+              <a
+                href={link.href}
+                target="_blank"
+                class="text-cyan-400 hover:text-cyan-300 underline"
+              >
+                {link.name}
+              </a>
+              {links.length !== i + 1 && '/'}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</BaseLayout>

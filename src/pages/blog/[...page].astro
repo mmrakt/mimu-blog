@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
-import DefaultPageLayout from '$/layouts/default.astro'
+import BaseLayout from '$/layouts/BaseLayout.astro'
 import PostPreviewList from '$/components/elements/PostPreviewList.astro'
 import Paginator from '$/components/elements/Paginator.astro'
 import { PAGE_SIZE } from '$/config'
@@ -46,7 +46,7 @@ type Props = {
 const { page } = Astro.props
 ---
 
-<DefaultPageLayout content={{ title, description }}>
+<BaseLayout content={{ title, description }}>
   <PostPreviewList posts={page.data} />
   <Paginator page={page} />
-</DefaultPageLayout>
+</BaseLayout>
