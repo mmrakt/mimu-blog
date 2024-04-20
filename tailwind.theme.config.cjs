@@ -146,7 +146,7 @@ module.exports = {
    */
   default: {
     colors: {
-      primary: colors.cyan[700],
+      primary: colors.cyan[500],
       secondary: colors.cyan[800],
       dark: {
         primary: colors.cyan[300],

@@ -16,7 +16,7 @@ export default defineConfig(
     markdown: {
       syntaxHighlight: 'shiki',
       shikiConfig: {
-        theme: 'css-variables',
+        theme: 'github-dark-dimmed',
       },
       remarkPlugins: [remarkCodeTitles],
       rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
