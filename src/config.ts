@@ -6,15 +6,15 @@ export const NAV_ITEMS: NavItems = {
     title: 'home',
   },
   blog: {
-    path: '/blog',
+    path: '/blog/',
     title: 'blog',
   },
   tags: {
-    path: '/tags',
+    path: '/tags/',
     title: 'tags',
   },
   about: {
-    path: '/about',
+    path: '/about/',
     title: 'about',
   },
 }

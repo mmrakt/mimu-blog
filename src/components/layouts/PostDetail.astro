@@ -11,13 +11,13 @@ interface Props {
 const { entry } = Astro.props
 ---
 
-<article class="max-w-2xl mx-auto mt-4 md:mt-0">
+<article class="max-w-2xl mx-auto pb-10 md:mt-0">
   {
     entry.data.tag && entry.data.tag !== 'other' && (
       <TagIcon tag={entry.data.tag} link={entry.slug} size="large" />
     )
   }
-  <div class="py-4 mb-1 text-center md:text-left">
+  <div class="py-10 text-center md:text-left" id="postMeta">
     <div class="flex justify-center">
       <h1
         class="text-xl md:text-3xl text-left font-extrabold mt-5"
